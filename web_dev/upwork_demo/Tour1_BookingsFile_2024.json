@@ -1,0 +1,35 @@
+{
+    "bookings_2024": [
+        {
+            "booking_id": "BKG-2024-1001",
+            "date": "02-Sep-2024",
+            "no_of_people": "2",
+            "price_with_discount": "160",
+            "discount_applied": "NO",
+            "vehicle_code": "Vehicle1",
+            "cust_email": "customer1email@domain1.com",
+            "status_of_payment": "PAID"
+        },
+        {
+            "booking_id": "BKG-2024-1002",
+            "date": "03-Sep-2024",
+            "no_of_people": "3",
+            "price_with_discount": "200",
+            "discount_applied": "NO",
+            "vehicle_code": "Vehicle1",
+            "cust_email": "customer2email@domain2.com",
+            "status_of_payment": "UNPAID"
+        },
+        {
+            "booking_id": "BKG-2024-1003",
+            "date": "03-Oct-2024",
+            "no_of_people": "4",
+            "price_with_discount": "208",
+            "discount_applied": "YES",
+            "vehicle_code": "Vehicle1",
+            "cust_email": "customer3email@domain3.com",
+            "status_of_payment": "PAID"
+        }
+    ],
+    "last_generated_booking_id": "BKG-2024-1003"
+}
