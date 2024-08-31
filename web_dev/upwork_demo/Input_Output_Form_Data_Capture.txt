@@ -1,0 +1,20 @@
+Demo Requirements: One webpage hosted on an existing server with a public facing URI.
+Technology: Any technology capable of dynamic content reading, displaying and writing with json files and javascript engine at front end & back end)
+
+Date: <selected by the user>
+Tour: <Tour1- Defaulted for demo>
+No of people:<1 to 4 selected by the user using drop-down for demo (Tour1) max allowed is 4 due to vehicle (vehicle1's) capacity limit> 
+
+Price: <calculated based on number of people for Tour1 cost per person with applicable discount if the number is 4 + vehicle hire cost. 
+Please see vehicle1 and Tour1 json files>
+For calculating the availability input files refered by the script: Tour1_availability_2024,  Vehicle1_availability_2024
+TOTAL PRICE WILL BE DISPLAYED BASED ON NUMBER OF PEOPLE, DISCOUNT APPLICABLE PLUS VEHICLE COST PER DAY 
+AFTER THE TOTAL PRICE IS DISPLAYED, Form will ask the user : would you like to proceed and book the tour(check box)?
+if the User select yes: The website will <displays T&Cs> and clicks <YES> and prompts the user for email address
+email address: <entered by the user>
+The tour details captured above will be emailed to customer email with following info
+Booking Reference(Generated automatically: Please see the json file), 
+Date, 
+No of people, 
+Price.
+Please see Tour1_BookingsFile_2024.json with sample bookings generated to curate the demo.

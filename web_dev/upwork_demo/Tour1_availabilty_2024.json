@@ -1,0 +1,42 @@
+{
+    "Jan": [
+        "-1"
+    ],
+    "Feb": [
+        "all"
+    ],
+    "Mar": [
+        "all"
+    ],
+    "Apr": [
+        "none"
+    ],
+    "May": [
+        "none"
+    ],
+    "Jun": [
+        "none"
+    ],
+    "Jul": [
+        "none"
+    ],
+    "Aug": [
+        "none"
+    ],
+    "Sep": [
+        "-2",
+        "-3"
+    ],
+    "Oct": [
+        "-3",
+        "-30"
+    ],
+    "Nov": [
+        "all"
+    ],
+    "Dec": [
+        "-25",
+        "-26"
+    ],
+    "//": "COMMENT:month:-day means those days of the month are either booked or not available or tour is offered none means the tour is not available for the entire month all means the tour is available all days of that month in the above example, for the month of November all days are available. if a booking is made for 1st of Nov 2024, the script will re-write and update the Json file november line to Nov:-1"
+}
