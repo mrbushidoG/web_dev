@@ -13,7 +13,7 @@
     }
     th,td{
         border: 1px solid black;
-        padding: 24px;
+        padding: 35px;
     }
 </style>
 <body>
@@ -30,18 +30,30 @@
                     <th>Location</th>
                     <th>Order</th>
                     <th>Amount</th>
-                    <th>Order Placed</th>
-                    <th>Order Delivery</th>
+                    <th>Order Delivered</th>
                     <th>Comment</th>
                 </tr>
             </thead>
             <tbody id="orders">
-                
+                <tr>
+                    <td>item 1</td>
+                    <td>item 2</td>
+                    <td>item 3</td>
+                    <td>item 4</td>
+                    <td>item 5</td>
+                    <td>item 6</td>
+                    <td><button>Yes</button><button>No</button></td>
+                    <td><textarea name="" id="" rows="5" cols="15"></textarea></td>
+                </tr>
             </tbody>
         </table>
     </div>
-    <div id="test-dom">
-        <p>This will appear after the new div</p>
+    <form action="">
+        <input type="text" id="xss-attack">
+        <input type="submit" value="Submit">
+    </form>
+    <div class="show-form-input">
+
     </div>
 <script src="js/orders_listing.js"></script>
 </body>
