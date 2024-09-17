@@ -1,4 +1,5 @@
-// function AppendRow(elBody,item){
+/* function AppendRow(elBody,item){
+
 //     var tr = document.createElement('tr');
 
 //     item.map(o =>{
@@ -45,4 +46,12 @@ var display_input = document.getElementsByClassName('show-form-input')[0];
 // Display the user input
 display_input.innerHTML = user_input.value;
 
-console.log(user_input);
+console.log(user_input);*/
+
+/* Real Application */
+var selectAllTd = document.querySelectorAll('td');
+
+for (let i = 0; i < selectAllTd.length; i++) {
+    selectAllTd[i].setAttribute('class','change-background-color');
+    
+}
