@@ -7,15 +7,18 @@
     <title>Water Deliveries Follow up</title>
 </head>
 <style>
-    table{
+    table {
         table-layout: fixed;
         text-align: center;
     }
-    th,td{
+
+    th,
+    td {
         border: 1px solid black;
         padding: 35px;
     }
 </style>
+
 <body>
     <div id="logo">
     </div>
@@ -42,20 +45,37 @@
                     <td>item 4</td>
                     <td>item 5</td>
                     <td>item 6</td>
-                    <td><button>Yes</button><button>No</button></td>
+                    <td><span class="display-status"><button class="update-delivery-status" value="yes">Yes</button><button class="update-delivery-status" value="no">No</button></span>
+                    </td>
+                    <td><textarea name="" id="" rows="5" cols="15"></textarea></td>
+                </tr>
+                <tr>
+                    <td>item 1</td>
+                    <td>item 2</td>
+                    <td>item 3</td>
+                    <td>item 4</td>
+                    <td>item 5</td>
+                    <td>item 6</td>
+                    <td><span class="display-status"><button class="update-delivery-status" value="yes">Yes</button><button class="update-delivery-status" value="no">No</button></span>
+                    </td>
+                    <td><textarea name="" id="" rows="5" cols="15"></textarea></td>
+                </tr>
+                <tr>
+                    <td>item 1</td>
+                    <td>item 2</td>
+                    <td>item 3</td>
+                    <td>item 4</td>
+                    <td>item 5</td>
+                    <td>item 6</td>
+                    <td><span class="display-status"><button class="update-delivery-status" value="yes">Yes</button><button class="update-delivery-status" value="no">No</button></span>
+                    </td>
                     <td><textarea name="" id="" rows="5" cols="15"></textarea></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <form action="">
-        <input type="text" id="xss-attack">
-        <input type="submit" value="Submit">
-    </form>
-    <div class="show-form-input">
-
-    </div>
-<script src="js/orders_listing.js"></script>
+    <div id="feedback"></div>
+    <script src="js/orders-followup.js"></script>
 </body>
 
 </html>
