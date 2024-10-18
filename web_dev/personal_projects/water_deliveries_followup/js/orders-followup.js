@@ -37,13 +37,17 @@ function deliveryNotDone(e){
     //elGrandparent.removeChild(elParent);
 
     // Display the delivery status
-
+    // The reason behind the non delivery
+    var reasonForNonDelivery = prompt("Enter the reason for not delivering");
     displayStatus = document.createElement('p');
-    textNode = document.createTextNode('Deliery Not Done');
+    textNode = document.createTextNode(reasonForNonDelivery);
     displayStatus.appendChild(textNode);
     elParent.append(displayStatus);
-    elParent.setAttribute('style','background-color:red');
-    displayStatus.setAttribute('style','color:white');
+    elParent.setAttribute('style','background-color:#ef476f');
+    displayStatus.setAttribute('style','color:#f8f9fa');
+    
+    // If no reason was entered
+    // At 1:00 consider the order not delivered and make the status delivery failure
     
 
 
@@ -51,20 +55,22 @@ function deliveryNotDone(e){
 }
 
 var deliveryButton = document.getElementsByClassName('delivery-status');
-var getButtons = document.getElementsByTagName('button');
+var getDeliveryStatus = document.getElementsByClassName('update-delivery-status');
     
- for (let i = 0; i < getButtons.length; i++) {
+ for (let i = 0; i < getDeliveryStatus.length; i++) {
     
-        getButtons[i].addEventListener('click',function(e){
-            if(getButtons[i].value == 'yes'){
-                getButtons[i].setAttribute('style','display:none');
-                getButtons[i+1].setAttribute('style','display:none');
+        getDeliveryStatus[i].addEventListener('click',function(e){
+            if(getDeliveryStatus[i].value === 'yes'){
+                getDeliveryStatus[i].setAttribute('style','display:none');
+                getDeliveryStatus[i+1].setAttribute('style','display:none');
                 deliveryDone(e);
                 
-            } else if(getButtons[i].value == 'no') {
-                getButtons[i].setAttribute('style','display:none');
-                getButtons[i-1].setAttribute('style','display:none');
+            } else if(getDeliveryStatus[i].value === 'no') {
+                getDeliveryStatus[i].setAttribute('style','display:none');
+                getDeliveryStatus[i-1].setAttribute('style','display:none');
                 deliveryNotDone(e);
+                
+                
             }
         }, false);
         
