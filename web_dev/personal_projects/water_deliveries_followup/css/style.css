@@ -1,3 +1,17 @@
-td {
-    background-color: blue;
+body{
+    background-color: black;
+    font-size: 15em;
 }
+table {
+    table-layout: fixed;
+    text-align: center;
+    color: white;
+}
+
+th,
+td {
+    border: 1px solid white;
+    padding: 35px;
+}
+
+

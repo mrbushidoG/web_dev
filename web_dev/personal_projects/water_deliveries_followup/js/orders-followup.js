@@ -5,39 +5,29 @@ function getTarget(e){
 
 
 // Delivery Is Done
-function deliveryDone(e){
+function deliveryIsDone(e){
     var target, elParent, elGrandparent,displayStatus,textNode;
 
     target= getTarget(e);
     elParent = target.parentNode;
     elGrandparent = target.parentNode.parentNode;
-    //elGrandparent.removeChild(elParent);
 
-    // Display the delivery status
+    if(target.value === 'yes'){
+        
+        displayStatus = document.createElement('p');
+        textNode = document.createTextNode('Delivery Done');
+        displayStatus.appendChild(textNode);
+        elParent.append(displayStatus);
+        elParent.setAttribute('style','background-color:green');
+        displayStatus.setAttribute('style','color:white');
+    } else {
+        console.log("Something went wrong");
+    }
 
-    displayStatus = document.createElement('p');
-    textNode = document.createTextNode('Deliery Done');
-    displayStatus.appendChild(textNode);
-    elParent.append(displayStatus);
-    elParent.setAttribute('style','background-color:green');
-    displayStatus.setAttribute('style','color:white');
-    
 
 
-    e.preventDefault();
-}
-
+if (target.value === 'no'){
 // If delivery did not happen (For any reason)
-function deliveryNotDone(e){
-    var target, elParent, elGrandparent,displayStatus,textNode;
-
-    target= getTarget(e);
-    elParent = target.parentNode;
-    elGrandparent = target.parentNode.parentNode;
-    //elGrandparent.removeChild(elParent);
-
-    // Display the delivery status
-    // The reason behind the non delivery
     var reasonForNonDelivery = prompt("Enter the reason for not delivering");
     displayStatus = document.createElement('p');
     textNode = document.createTextNode(reasonForNonDelivery);
@@ -48,7 +38,7 @@ function deliveryNotDone(e){
     
     // If no reason was entered
     // At 1:00 consider the order not delivered and make the status delivery failure
-    
+}
 
 
     e.preventDefault();
@@ -63,12 +53,12 @@ var getDeliveryStatus = document.getElementsByClassName('update-delivery-status'
             if(getDeliveryStatus[i].value === 'yes'){
                 getDeliveryStatus[i].setAttribute('style','display:none');
                 getDeliveryStatus[i+1].setAttribute('style','display:none');
-                deliveryDone(e);
+                deliveryIsDone(e);
                 
             } else if(getDeliveryStatus[i].value === 'no') {
                 getDeliveryStatus[i].setAttribute('style','display:none');
                 getDeliveryStatus[i-1].setAttribute('style','display:none');
-                deliveryNotDone(e);
+                deliveryIsDone(e);
                 
                 
             }
