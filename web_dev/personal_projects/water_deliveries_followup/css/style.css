@@ -1,11 +1,17 @@
 body{
-    background-color: black;
-    font-size: 15em;
+    width: 100%;
 }
+
+.container {
+    width: 100%;
+}
+
 table {
+    display: block;
     table-layout: fixed;
     text-align: center;
     color: white;
+    font-size: 14px;
 }
 
 th,
@@ -14,4 +20,28 @@ td {
     padding: 35px;
 }
 
+.btn {
+    margin-right: 13px;
+    
+}
 
+@media (max-width: 576px){
+    body {
+        background-color: aquamarine;
+        width: 450px;
+    }
+    td {
+        overflow-y: scroll;
+    }
+}
+
+@media (orientation: landscape){
+    body {
+        width: 100%;
+    }
+    
+    td {
+        padding: 45px;
+        overflow-y: auto;
+    }
+}
