@@ -1,9 +1,9 @@
 // Refactore the program
-function getTarget(e){
-    return e.target;
-}
+var showDate = document.getElementById("show-date");
+var date = new Date();
 
-
+showDate.textContent = date.toDateString();
+console.log(date);
 // Delivery Is Done
 function deliveryIsDone(e){
     var target, elParent, elGrandparent,displayStatus,textNode;
