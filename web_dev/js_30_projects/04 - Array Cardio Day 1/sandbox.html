@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandbox JS</title>
+</head>
+<body>
+    <h1>Just Testing</h1>
+
+
+<table>
+    <th>Item*1</th>
+    <th>Item*2</th>
+    <th>Item*3</th>
+</table>
+
+
+<script>
+    const countriesToVisit = [
+    {
+        month:"December",country:"Malaysia"
+    },
+    {
+        month: "January", country:"Vietnam"
+    },
+    {
+        month:"November",country:"Japan"
+    }
+
+];
+
+// show months
+const months = countriesToVisit.map(o => 'On '+o.month + ' I\'m Traveling to ' + o.country);
+
+console.table(months);
+
+</script>
+
+</body>
+</html>

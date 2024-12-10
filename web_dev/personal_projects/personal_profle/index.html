@@ -2,31 +2,83 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css" />
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <title>Abdel Magid Ahmed - Web Developer</title>
 </head>
 
 <body>
-    <div class="navigation">
-        <table class="nav-element">
-            <tr>
-                <td><a href="#">About Me</a></td>
-                <td><a href="#">Skills</a></td>
-                <td><a href="#">Projects</a></td>
-                <td><a href="#">Contact Me</a></td>
-            </tr>
-        </table>
+    <nav class="navbar navbar-default navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">MrBushido</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#about_me">About Me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Projects</a>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Me</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit">
+                        Search
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="hero-img">
+            <img src="img/tech.jpg" alt="" />
+        </div>
+        <div class="about-me mt-4" id="about_me">
+            <h2>About Me</h2>
+            <p>
+                I am a beginner web developer with a passion for creating
+                user-friendly, responsive websites. Recently, I have gained hands-on
+                experience working with HTML, CSS, and JavaScript, and I'm constantly
+                improving my skills through online tutorials and personal projects. I
+                am eager to expand my knowledge in front-end and back-end development,
+                and I am always excited to take on new challenges. My goal is to build
+                engaging and functional websites that provide seamless experiences for
+                users while continuously learning and growing as a developer.
+            </p>
+        </div>
     </div>
-    <div class="hero-img">
-        <img src="img/tech.jpg" alt="">
-    </div>
-    <div class="about-me"></div>
-    <div class="skills"></div>
     <div class="projects"></div>
     <div class="contact-me"></div>
-    
+    </div>
 </body>
 
 </html>

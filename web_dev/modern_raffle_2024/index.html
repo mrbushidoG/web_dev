@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Raffle 2024</title>
+</head>
+<body>
+    <div class="input-section">
+        <h2>Add Participants</h2>
+        <div class="input-group">
+            <input type="text" id="username" placeholder="Username">
+            <button id="addUserBtn"><i class="fas fa-user-plus"></i>Add</button>
+        </div>
+        <ul id="userList"></ul>
+    </div>
+
+    <div class="input-section">
+        <h2>Select a Prize</h2>
+        <div class="input-group">
+            <input type="text" id="prize" placeholder="Prize Description">
+            <button id="setPrizeBtn"><i class="fas fa-gift"></i> Set Prize </button> 
+        </div>
+        <p id="selectedPrize">Selected Prize: None</p>
+    </div>
+
+    <div class="wheel-container">
+        <div class="wheel-wrapper">
+            <canvas id="raffleWheel" width="500" heights="500"></canvas>
+            <div class="pointer">
+                <i class="fas fa-arrow-donw"></i>
+            </div>
+        </div>
+        <button id="spinBtn"><i class="fas fa-play"></i> Spin the Wheel</button>
+    </div>
+
+    <div id="winnerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+        </div>
+    </div>
+
+</body>
+</html>
