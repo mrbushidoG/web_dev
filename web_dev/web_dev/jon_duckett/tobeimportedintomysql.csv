@@ -1,9 +1,0 @@
-INSERT INTO `orders_table` VALUES ('details', 'delivery_status', 'salesman'),
-INSERT INTO `orders_table` VALUES ('details', 'delivery_status', 'salesman'),
-INSERT INTO `orders_table` VALUES ('details', 'delivery_status', 'salesman'),
-INSERT INTO `orders_table` VALUES ('details', 'delivery_status', 'salesman'),
-INSERT INTO `orders_table` VALUES ('details', 'delivery_status', 'salesman'),
-INSERT INTO `orders_table` VALUES ('details', 'delivery_status', 'salesman'),
-INSERT INTO `orders_table` VALUES ('details', 'delivery_status', 'salesman'),
-INSERT INTO `orders_table` VALUES ('details', 'delivery_status', 'salesman'),
-INSERT INTO `orders_table` VALUES ('details', 'delivery_status', 'salesman');
