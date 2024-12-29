@@ -1,6 +1,0 @@
-{
-    "_comment_": "this is vehicle1 details that will be used to provide booking...information given here will be used for calculating the price of a booking",
-    "vehicle_capacity": "4",
-    "vehicle_price_per_day": "80",
-    "vehicle_currency": "USD"
-}
