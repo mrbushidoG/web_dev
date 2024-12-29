@@ -1,20 +1,27 @@
-.navigation {
-    margin-left: 720px;
+.container{
+    margin: 0 auto;
+    width: 900px;
 }
 
-.nav-element td {
-    border-spacing: 8px;
-    padding-right: 10px;
-}
-
-
-
-.hero-img {
+img {
     width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
 }
 
-.hero-img,img{
-    margin-left: 230px;
+ul.projects-list li img{
+    width: 86px;
+}
+
+.projects-list {
+    padding: 0 0 0 2px;
+}
+
+ul.projects-list li { 
+    display: inline-block;
+    padding: 0 0 0 12px;
+    
 }
 
 

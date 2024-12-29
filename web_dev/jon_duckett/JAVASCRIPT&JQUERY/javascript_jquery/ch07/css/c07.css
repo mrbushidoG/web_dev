@@ -260,6 +260,15 @@ a.show{
   background:none;
   color: #fff;}
 
+  .just-testing{
+
+    background-color: #c5a996;
+    border: 1px solid #fff;
+    color: #000;
+    font-family:'Georgia';
+    padding-left: 75px;
+  }
+
 /* Small screen:mobile */
 @media only screen and (max-width: 500px) {
   body {

@@ -8,20 +8,18 @@ console.log(date);
 function deliveryIsDone(e){
     var target, elParent, elGrandparent,displayStatus,textNode;
 
-    target= getTarget(e);
+    target= e.target;
     elParent = target.parentNode;
     elGrandparent = target.parentNode.parentNode;
 
     if(target.value === 'yes'){
-        
         displayStatus = document.createElement('p');
         textNode = document.createTextNode('Delivery Done');
         displayStatus.appendChild(textNode);
         elParent.append(displayStatus);
         elParent.setAttribute('style','background-color:green');
         displayStatus.setAttribute('style','color:white');
-    } else {
-        console.log("Something went wrong");
+
     }
 
 
@@ -33,8 +31,8 @@ if (target.value === 'no'){
     textNode = document.createTextNode(reasonForNonDelivery);
     displayStatus.appendChild(textNode);
     elParent.append(displayStatus);
-    elParent.setAttribute('style','background-color:#ef476f');
-    displayStatus.setAttribute('style','color:#f8f9fa');
+    elParent.setAttribute('style','background-color:#d00000');
+    displayStatus.setAttribute('style','color:#f8f9fa;font-weight:990');
     
     // If no reason was entered
     // At 1:00 consider the order not delivered and make the status delivery failure

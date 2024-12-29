@@ -24,6 +24,17 @@ td {
     margin-right: 13px;
     
 }
+td.delivery-status {
+    width: 100px;
+    height: 100px;
+    padding-top: 30px;
+}
+
+td.delivery-status p {
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
 
 @media (max-width: 576px){
     body {

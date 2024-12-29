@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Order Form</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Order Form</h1>
+        <form id="order-form">
+            <div class="form-content">
+                <div class="sku-list">
+                    <h3>List of SKUs</h3>
+                    <ul>
+                        <li><input type="checkbox" id="sku1" name="sku" value="SKU001"> SKU001</li>
+                        <li><input type="checkbox" id="sku2" name="sku" value="SKU002"> SKU002</li>
+                        <li><input type="checkbox" id="sku3" name="sku" value="SKU003"> SKU003</li>
+                        <li><input type="checkbox" id="sku4" name="sku" value="SKU004"> SKU004</li>
+                    </ul>
+                </div>
+                <div class="form-fields">
+                    <!-- Other form fields -->
+
+                    <div class="form-section">
+                        <label>Phone Numbers:</label>
+                        <div id="phone-numbers">
+                            <div class="phone-number-field">
+                                <label for="phone-number-1">Phone Number:</label>
+                                <input type="tel" id="phone-number-1" name="phone-number-1" pattern="^[0-9]{10}$" required>
+                            </div>
+                        </div>
+                        <button type="button" id="add-phone-btn">Add Another Phone Number</button>
+                    </div>
+
+                    <!-- Rest of the form fields -->
+
+                    <button type="submit">Submit Order</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
