@@ -1,0 +1,105 @@
+/*
+* 4.2. Clients
+*/
+.client(){
+  position: relative;
+  a{
+    display: inline-block;
+    position: relative;
+  }
+  img{
+    .filter(grayscale(100%));
+    .transition(filter 0.15s linear);
+    &.gray{
+      left: 0;
+      .opacity(1);
+      position: absolute;
+      top: 0;
+      .transition(opacity 0.15s linear);
+      z-index: 2;
+    }
+  }
+  &:hover{
+    img{
+      .filter(grayscale(0));
+      &.gray{
+        .opacity(0);
+      }
+    }
+  }
+  &.placeholder{
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.clients{
+  ul.clients-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+    margin: 20px 0 -15px;
+    padding: 0;
+    li {
+      .border-radius(@border-radius);
+      margin-bottom: 30px;
+      overflow: hidden;
+      text-align: center;
+      width: 31%;
+      .client();
+    }
+  }
+
+  .clients-carousel{
+    .client{
+      padding: 0 10px;
+      text-align: center;
+      .client();
+    }
+  }
+}
+
+/*
+* Clients responsive
+*/
+@media all and (max-width: 1199px){
+  .clients{
+    ul.clients-list{
+      li{
+        width: 30.5%;
+      }
+    }
+  }
+}
+@media all and (max-width: 991px) and (min-width: 768px){
+  .clients{
+    ul.clients-list{
+      li{
+        width: 46.5%;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 500px){
+  .clients{
+    ul.clients-list{
+      li{
+        width: 46.5%;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 380px){
+  .clients{
+    ul.clients-list{
+      li{
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,137 @@
+/*
+* 4.11. Welcome screen
+*/
+#welcome-screen{
+  background: @color-black;
+  color: @color-white;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  .image {
+    .retina(@main-background-image, 2, cover, no-repeat 50% 0 @color-black);
+    height: 100%;
+    left: 0;
+    .opacity(0.2);
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .info{
+    bottom: 0;
+    left: 0;
+    padding: 0 15px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+
+    h1{
+      font-family: @welcome-screen-heading-font-family;
+      font-size: 50px;
+      font-weight: 400;
+      letter-spacing: 2.8px;
+      margin-bottom: 20px;
+    }
+    p{
+      font-family: @welcome-screen-content-font-family;
+      font-size: 20px;
+      font-weight: 300;
+      letter-spacing: 2.78px;
+      position: relative;
+      &.about{
+        margin-bottom: 28px;
+      }
+      &.hello{
+        margin-bottom: 0;
+      }
+      a{
+        color: inherit;
+        border-bottom: 1px solid @color-white;
+        padding-bottom: 5px;
+        &:hover{
+          .opacity(0.75);
+        }
+      }
+    }
+    .button{
+      margin-bottom: 0;
+    }
+  }
+  &.half-page{
+    .image {
+      width: 50%;
+    }
+    .info{
+      bottom: auto;
+      left: auto;
+      margin-top: -130px;
+      right: 0;
+      top: 50%;
+      width: 50%;
+    }
+    &.image-right{
+      .image{
+        right: 0;
+        left: auto;
+      }
+      .info{
+        left: 0;
+        right: auto;
+      }
+    }
+  }
+  .social-icons{
+    margin-bottom: 40px;
+    margin-top: 30px;
+    .icon{
+      color: @color-white;
+      display: inline-block;
+      font-size: 16px;
+      line-height: 25px;
+      margin: 0 12px 0 13px;
+      .opacity(0.5);
+      padding-top: 6px;
+      text-align: center;
+      text-decoration: none;
+      .transition(opacity 0.1s linear);
+      &:hover{
+        .opacity(1);
+      }
+    }
+  }
+  .slide-down{
+    border: 2px solid @color-white-50;
+    .border-radius(20px);
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 40px;
+    padding: 18px 3px 2px;
+    .transition(all 0.1s linear);
+    &:hover{
+      border-color: @color-white;
+      .icon{
+        .opacity(1);
+      }
+    }
+    .icon{
+      font-size: 14px;
+      .opacity(0.8);
+    }
+  }
+  + footer{
+    display: none !important;
+  }
+}
+
+/*
+* Welcome screen responsive
+*/
+@media all and (max-width: 767px) {
+  #welcome-screen{
+    &.half-page{
+      .image,
+      .info{
+        width: 100%;
+      }
+    }
+  }
+}

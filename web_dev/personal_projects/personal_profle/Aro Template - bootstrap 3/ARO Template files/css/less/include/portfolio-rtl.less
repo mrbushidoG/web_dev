@@ -1,0 +1,46 @@
+.portfolio{
+  .filter{
+    a{
+      &.active,
+      &:hover{
+        &:after{
+          left: auto;
+          right: 0;
+        }
+      }
+    }
+  }
+  ul.portfolio-list{
+    li{
+      .hover-overlay{
+        left: auto;
+        right: 0;
+      }
+      .project-title{
+        &:after{
+          left: auto;
+          right: 25%;
+        }
+      }
+    }
+  }
+  .portfolio-details-popup{
+    left: auto;
+    right: 0;
+    .project-details-wrapper{
+      .popup-controls{
+        left: auto;
+        right: 0;
+        .popup-close{
+          left: 14px;
+          right: auto;
+        }
+        .popup-navigation{
+          height: 100%;
+          position: relative;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

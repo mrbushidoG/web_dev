@@ -1,0 +1,86 @@
+/*
+* Project popup
+*/
+.mfp-close(){
+  background: @color-black;
+  color: @color-white;
+  font-size: 15px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0;
+  right: 0;
+  text-align: center;
+  width: 30px;
+  .icon{
+    color: inherit;
+  }
+}
+
+.popup{
+  background: @content-background;
+  .border-radius(@border-radius);
+  margin: 30px auto;
+  max-width: 50%;
+  min-width: 50%;
+  overflow: hidden;
+  position: relative;
+  .info{
+    padding: 0 35px 35px;
+  }
+  .title{
+    color: @titles-color;
+    font-family: @titles-font;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    line-height: 1.1em;
+    margin-bottom: 25px;
+    margin-top: 20px;
+    padding-bottom: 11px;
+    position: relative;
+    text-transform: uppercase;
+    &:after{
+      background: @primary-color;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 2px;
+      left: 0;
+      position: absolute;
+      width: 90px;
+    }
+  }
+  p{
+    color: @content-color;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    line-height: 1.75;
+    margin-bottom: 35px;
+    text-align: left;
+  }
+  img{
+    max-height: 50%;
+    max-width: 100%;
+  }
+  .mfp-close{
+    .mfp-close();
+  }
+}
+
+.mfp-figure{
+  position: relative;
+  .mfp-close{
+    .mfp-close();
+    top: 40px;
+  }
+}
+
+.mfp-img{
+  padding-top: 25px;
+}
+
+@media screen and (max-width: 767px){
+  .popup{
+    max-width: 100%;
+  }
+}

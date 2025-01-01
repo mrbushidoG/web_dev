@@ -1,0 +1,88 @@
+/*
+* 4.5. Gallery
+*/
+.gallery {
+  ul.gallery-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style: none;
+    margin: 30px 0 -15px;
+    padding: 0;
+    li {
+      margin: 0 0 30px;
+      width: 22%;
+      a{
+        display: inline-block;
+        width: 100%;
+      }
+      img{
+        width: 100%;
+      }
+      &.placeholder{
+        height: 0;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+/*
+* Gallery responsive
+*/
+@media all and (max-width: 1199px){
+  .gallery {
+    ul.gallery-list {
+      li{
+        width: 30%;
+      }
+    }
+  }
+}
+@media all and (max-width: 991px){
+  .gallery {
+    ul.gallery-list {
+      li{
+        width: 46%;
+      }
+    }
+  }
+}
+@media all and (max-width: 767px){
+  .gallery {
+    ul.gallery-list {
+      li{
+        width: 21.8%;
+      }
+    }
+  }
+}
+@media all and (max-width: 649px){
+  .gallery {
+    ul.gallery-list {
+      li{
+        width: 29.6%;
+      }
+    }
+  }
+}
+@media all and (max-width: 479px){
+  .gallery {
+    ul.gallery-list {
+      li{
+        width: 46.2%;
+      }
+    }
+  }
+}
+@media all and (max-width: 379px){
+  .gallery {
+    ul.gallery-list {
+      li{
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
+}

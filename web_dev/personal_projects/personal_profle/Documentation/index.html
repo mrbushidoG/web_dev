@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><title>ARO Documentation</title><!-- Framework CSS --><link rel="stylesheet" href="./assets/blueprint-css/screen.css" type="text/css" media="screen, projection"><link rel="stylesheet" href="./assets/blueprint-css/print.css" type="text/css" media="print"><!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]--><link rel="stylesheet" href="./assets/blueprint-css/plugins/buttons/screen.css" type="text/css" media="screen, projection"><link rel="stylesheet" href="./assets/css/bootstrap.min.css" type="text/css" media="all"><link rel="stylesheet" href="./assets/css/magnific-popup.css" type="text/css" media="all"><link rel="stylesheet" href="./assets/js/highlight/styles/github.css" type="text/css" media="all"><script type="text/javascript" src="./assets/js/highlight/highlight.pack.js"></script><script type="text/javascript" src="./assets/js/jquery-3.1.1.min.js"></script><script type="text/javascript" src="./assets/js/jquery.sticky-kit.min.js"></script><script type="text/javascript" src="./assets/js/jquery.waypoints.min.js"></script><script type="text/javascript" src="./assets/js/jquery.magnific-popup.min.js"></script><script type="text/javascript">hljs.initHighlightingOnLoad();</script><script type="text/javascript">
+        $(document).ready(function(){
+            initializeStickyMenu();
+            $( window ).resize(initializeStickyMenu);
+
+            function initializeStickyMenu(){
+                var windowWidth = $(document).width();
+                var contentHeight = $('.main-content').height();
+
+                var menu = $('nav');
+                var aside = menu.parent();
+                aside.css('height', contentHeight);
+                if (windowWidth < 768) {
+                    menu.trigger("sticky_kit:detach");
+                } else {
+                    menu.stick_in_parent().on('sticky_kit:stick', function(e){
+                        var parent = menu.parent();
+                        var width = parseFloat(window.getComputedStyle(parent[0]).width);
+                        menu.width(width);
+                    });
+                }
+            }
+
+            var menuLinks = $('nav a');
+            menuLinks.each(function(key, element){
+
+                var a = $(element);
+                var href = a.attr('href').replace(/\//gi, '');
+
+                if(href.charAt(0) === '#'){
+
+                    var target = $(href);
+                    if(target.length === 1){
+                        /**
+                         * Initialize menu
+                         */
+                        a.on('click', function(e){
+                            e.preventDefault();
+                            $('nav a').removeClass('active');
+                            a.addClass('active');
+                            $('nav > ol > li.active').removeClass('active');
+                            a.closest('nav > ol > li').addClass('active');
+                            Waypoint.disableAll();
+                            window.history.pushState({}, '', a.attr('href'));
+
+                            $('html, body').animate({
+                                scrollTop: target.offset().top - 25
+                            }, 500, function(){
+                                Waypoint.enableAll();
+                            });
+                        });
+
+                        /**
+                         * Initialize waypoints
+                         */
+                        $(href).waypoint({
+                            offset: '50%',
+                            handler: function(direction){
+                                if(direction === 'up'){
+                                    menuLinks.removeClass('active');
+                                    var currentA = $('a', a.parent().prev());
+                                    if(currentA.length > 1){
+                                        currentA = currentA.last();
+                                    }
+                                    currentA.addClass('active');
+                                    $('nav > ol > li.active').removeClass('active');
+                                    currentA.closest('nav > ol > li').addClass('active');
+                                    window.history.pushState({}, '', currentA.attr('href'));
+                                }
+                                else{
+                                    menuLinks.removeClass('active');
+                                    a.addClass('active');
+                                    $('nav > ol > li.active').removeClass('active');
+                                    a.closest('nav > ol > li').addClass('active');
+                                    window.history.pushState({}, '', href);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script><style type="text/css" media="screen">
+        body{
+            line-height: 1.75;
+        }
+        p, table, hr, .box { margin-bottom:25px; }
+        .box p { margin-bottom:10px; }
+
+        nav ol li ol{
+            display: none;
+        }
+
+        nav ol li.active ol{
+            display: block;
+        }
+
+        nav li.active > a,
+        nav a.active{
+            font-weight: bold;
+            color: #000000;
+        }
+    </style></head><body>
+<div class="container" id="top">
+
+    <h3 class="center alt">“ARO” Documentation by “Arkadiusz Roch ” v1.2</h3>
+
+    <hr><h1 class="center">“ARO”</h1>
+
+    <div class="borderTop">
+        <div class="span-6 colborder info prepend-1">
+            <p class="prepend-top">
+                <strong>
+                    Created: 14-11-2018<br>
+                                        By: Arkadiusz Roch<br>
+                                                            Email: <a href="mailto:contact@aroch.pl">contact@aroch.pl</a><br>
+                                                            Website: <a href="http://www.aroch.pl">http://www.aroch.pl</a><br></strong>
+            </p>
+        </div><!-- end div .span-6 -->
+
+        <div class="span-12 last">
+            <p class="prepend-top append-0">Thank you for purchasing my theme. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="https://themeforest.net/user/aroch">here</a>. Thanks so much!</p>
+        </div>
+    </div><!-- end div .borderTop -->
+
+    <hr><div class="row">
+                <hr><div class="col-md-3" role="complementary">
+            <nav><h2 id="toc" class="alt">Table of Contents</h2>
+                <ol><li>
+        <a href="#installation">Installation</a>
+
+        
+    </li>
+    <li>
+        <a href="#html-structure">HTML Structure</a>
+
+                    <ol><li>
+        <a href="#html-structure-headers">Headers</a>
+
+        
+    </li>
+    <li>
+        <a href="#html-structure-photo">Photo</a>
+
+        
+    </li>
+    <li>
+        <a href="#html-structure-navigation">Navigation</a>
+
+        
+    </li>
+    <li>
+        <a href="#html-structure-social-icons">Social icons</a>
+
+        
+    </li>
+    <li>
+        <a href="#html-structure-footers">Footers</a>
+
+        
+    </li>
+</ol></li>
+    <li>
+        <a href="#template-features">Template features</a>
+
+                    <ol><li>
+        <a href="#template-features-page-strucure">Page strucure</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-welcome-screen">Welcome screen</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-resume">Resume</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-portfolio">Portfolio</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-blog-list">Blog (list)</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-blog-entry">Blog (entry)</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-contact-map">Contact, map &amp; reCaptcha</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-error-404-page">Error 404 page</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-forms">Forms</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-buttons">Buttons</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-gallery">Gallery</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-clients">Clients</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-testimonials">Testimonials</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-skills">Skills</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-pagination">Pagination</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-helper-classes">Helper classes</a>
+
+        
+    </li>
+    <li>
+        <a href="#template-features-rtl">RTL</a>
+
+        
+    </li>
+</ol></li>
+    <li>
+        <a href="#images-sizes">Images sizes</a>
+
+        
+    </li>
+    <li>
+        <a href="#css">CSS</a>
+
+                    <ol><li>
+        <a href="#css-structure-files">Structure &amp; files</a>
+
+        
+    </li>
+    <li>
+        <a href="#css-including-to-template">Including to template</a>
+
+        
+    </li>
+    <li>
+        <a href="#css-compresing-css-files">Compresing CSS files</a>
+
+        
+    </li>
+</ol></li>
+    <li>
+        <a href="#javascript">JavaScript</a>
+
+                    <ol><li>
+        <a href="#javascript-structure-files">Structure &amp; files</a>
+
+        
+    </li>
+    <li>
+        <a href="#javascript-including-to-template">Including to template</a>
+
+        
+    </li>
+    <li>
+        <a href="#javascript-compresing-js-files">Compresing JS files</a>
+
+        
+    </li>
+</ol></li>
+    <li>
+        <a href="#php">PHP</a>
+
+                    <ol><li>
+        <a href="#php-structure-files">Structure &amp; files</a>
+
+        
+    </li>
+    <li>
+        <a href="#php-configure-contact-form">Configure contact form</a>
+
+        
+    </li>
+</ol></li>
+    <li>
+        <a href="#less">LESS</a>
+
+                    <ol><li>
+        <a href="#less-structure-files">Structure &amp; files</a>
+
+        
+    </li>
+    <li>
+        <a href="#less-edit-compilation">Edit &amp; compilation</a>
+
+        
+    </li>
+</ol></li>
+    <li>
+        <a href="#grunt">Grunt</a>
+
+                    <ol><li>
+        <a href="#grunt-available-tasks">Available tasks</a>
+
+        
+    </li>
+    <li>
+        <a href="#grunt-configuration">Configuration</a>
+
+        
+    </li>
+</ol></li>
+    <li>
+        <a href="#package-content">Package content</a>
+
+        
+    </li>
+    <li>
+        <a href="#used-libraries">Used libraries</a>
+
+        
+    </li>
+    <li>
+        <a href="#used-images">Used images</a>
+
+        
+    </li>
+    <li>
+        <a href="#usefull-links">Usefull links</a>
+
+        
+    </li>
+</ol></nav></div>
+        <div class="col-md-9 main-content" role="main">
+            <!--- Installation --->
+<h3 id="installation">1. Installation</h3>
+
+<ol><li>Extract files from archive</li>
+<li>Customize template</li>
+<li>Open FTP program and connect to your server</li>
+<li>Send files from your pc to your server</li>
+<li>Done :)</li>
+</ol><hr><!--- HTML Structure ---><h3 id="html-structure">2. HTML Structure</h3>
+
+<p>This theme is a fixed layout with two columns. All of the information within the main content area is nested within a "main" element with an class of <code>content</code>. The sidebar's content is within a div with class name <code>aside-container</code>. The general template structure is the same throughout the template except welcome screen page. Here is the general structure.</p>
+<pre class="language-xml"><code>&lt;!DOCTYPE html&gt;
+&lt;!--- PAGE LANGUAGE ---&gt;
+&lt;html lang="en"&gt;
+ &lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+
+  &lt;!--- PAGE TITLE, DESCRIPTION AND AUTHOR ---&gt;
+  &lt;title&gt;My Awesome Website&lt;/title&gt;
+  &lt;meta name="description" content="http://www.example.com"&gt;
+  &lt;meta name="author" content="John Smith"&gt;
+
+  &lt;!--- ENABLE RESPONSIVE ON MOBILE DEVICES ---&gt;
+  &lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+
+  &lt;!--- GOOGLE FONTS ---&gt;
+  &lt;link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'&gt;
+  &lt;link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,400italic,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'&gt;
+
+  &lt;!-- STYLES --&gt;
+  &lt;link href="./css/normalize.css" media="all" rel="stylesheet" type="text/css" &gt;
+  &lt;link href="./css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css" &gt;
+  &lt;link href="./css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" &gt;
+  &lt;link href="./css/leaflet.css" media="all" rel="stylesheet" type="text/css" &gt;
+  &lt;link href="./css/magnific-popup.css" media="all" rel="stylesheet" type="text/css" &gt;
+  &lt;link href="./css/normalize.css" media="all" rel="stylesheet" type="text/css" &gt;
+  &lt;link href="./css/slick.css" media="all" rel="stylesheet" type="text/css" &gt;
+  &lt;link href="./css/slick-theme.css" media="all" rel="stylesheet" type="text/css" &gt;
+  &lt;link href="./css/socicon.css" media="all" rel="stylesheet" type="text/css" &gt;
+  &lt;link href="./css/styles-default.css" media="all" rel="stylesheet" type="text/css" &gt;
+
+  &lt;!-- OR COMPRESSED STYLES --&gt;
+  &lt;!-- &lt;link rel="stylesheet" type="text/css" href="./css/styles-default.min.css"/&gt; --&gt;
+
+  &lt;!-- FAVICON --&gt;
+  &lt;link rel="shortcut icon" href="./images/favicon.ico" /&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+ &lt;div class="page-wrapper"&gt;
+  &lt;div class="container"&gt;
+   &lt;div class="row"&gt;
+    &lt;!--- ASIDE BEGIN ---&gt;
+    &lt;div class="col-lg-3 col-md-4 col-12 aside-wrapper"&gt;
+     &lt;aside&gt;
+      &lt;div class="aside-container"&gt;
+      &lt;!--- left / right column content, eg. photo, menu, page title, short page description, social icons or footer ---&gt;
+      &lt;/div&gt;
+     &lt;/aside&gt;
+    &lt;/div&gt;
+    &lt;!--- ASIDE END ---&gt;
+    &lt;div class="col-lg-9 col-md-8 col-12 content-wrapper"&gt;
+     &lt;main class="content"&gt;
+     &lt;!--- CONTENT ---&gt;
+
+      &lt;!--- Page content here ---&gt;
+     
+     &lt;!--- CONTENT END ---&gt;
+     &lt;/main&gt;
+    &lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;!--- FOOTER START ---&gt;
+ &lt;footer&gt;
+  &lt;!--- Here you can add page footer or remove it if you want to display footer on aside column ---&gt;
+ &lt;/footer&gt;
+ &lt;!--- FOOTER END ---&gt;
+ &lt;!-- SCRIPTS --&gt;
+ &lt;script type="text/javascript" src="./js/jquery-3.3.1.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="./js/bootstrap.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="./js/jquery.fitvids.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="./js/jquery.magnific-popup.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="./js/jquery.sticky-kit.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="./js/jquery.validate.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="./js/jquery.validate/additional-methods.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="./js/jquery.waypoints.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="./js/leaflet.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="./js/slick.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="./js/retina.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="./js/scripts.js"&gt;&lt;/script&gt;
+
+ &lt;!-- OR COMPRESSED SCRIPTS --&gt;
+ &lt;!-- &lt;script type="text/javascript" src="./js/scripts.min.js"&gt;&lt;/script&gt; --&gt;
+ &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<div><strong><strong>Aside</strong></strong></div>
+<p>By default, the side panel moves along with the page. To disable panel moving, add the <code>static</code> class to the <code>aside</code> element.</p>
+
+    <hr><!--- Headers ---><h4 id="html-structure-headers">2.1. Headers</h4>
+
+<ol><li>
+<div><strong>In the main part of the page</strong></div>
+Structure of the header located on the main part of the page is shown below. It should be added before the <code>main</code> item.
+<pre class="language-xml"><code>...
+&lt;div class="col-lg-9 col-md-8 col-12 content-wrapper"&gt;
+ &lt;!-- CONTENT HEADER START --&gt;
+ &lt;header class="d-none d-md-block"&gt;
+  &lt;div class="header-wrapper"&gt;
+   &lt;h1 class="name"&gt;John Smith&lt;/h1&gt;
+   &lt;div class="description"&gt;I’m a programmer, webdesigner, traveler&lt;/div&gt;
+  &lt;/div&gt;
+ &lt;/header&gt;
+ &lt;!-- CONTENT HEADER END --&gt;
+ &lt;main class="content"&gt;
+...​</code></pre>
+<p>The header is hidden in the mobile version, but titles appear next to the photo instead. This will be described below.</p>
+</li>
+<li>
+<div><strong>On the side panel of the page</strong></div>
+Structure of the header located on the side panel of the page is shown below. It should be added directly behind the <code>div </code> element with the <code>aside-container</code> class.
+<pre class="language-xml"><code>...
+&lt;div class="aside-container"&gt;
+ &lt;!-- ASIDE HEADER START --&gt;
+ &lt;header class="d-none d-md-block"&gt;
+  &lt;h1 class="name"&gt;John Smith&lt;/h1&gt;
+  &lt;div class="description"&gt;I'm a programmer&lt;/div&gt;
+ &lt;/header&gt;
+ &lt;!-- ASIDE HEADER END --&gt;
+ &lt;div class="photo "&gt; ... &lt;/div&gt;
+ ...
+&lt;/div&gt;
+...​</code></pre>
+<p>The header is hidden in the mobile version, but titles appear next to the photo instead. This will be described below.</p>
+</li>
+</ol><hr><!--- Photo ---><h4 id="html-structure-photo">2.2. Photo</h4>
+
+<p>Below is an example of placing an image on a page. It should be added in the <code>div</code> with class <code>aside-container</code>:</p>
+<pre class="language-xml"><code>&lt;!-- PHOTO START --&gt;
+&lt;div class="photo "&gt;
+ &lt;h1 class="name d-block d-md-none"&gt;John Smith&lt;/h1&gt;
+ &lt;img src="/path/to/my-photo.png" alt="John Smith photo" /&gt;
+ &lt;div class="description visible-xs"&gt;I'm a programmer, webdesigner, traveler&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- PHOTO END --&gt;</code></pre>
+<p>If you only want to display the header above the image, you can remove the <code>h1</code> and <code>div</code> element. However, in the header you should deleted from all of the elements the <code>hidden-xs</code> class . Example below:</p>
+<pre class="language-xml"><code>&lt;header&gt;
+ &lt;h1 class="name"&gt;John Smith&lt;/h1&gt;
+ &lt;div class="description"&gt;I'm a programmer&lt;/div&gt;
+&lt;/header&gt;
+&lt;!-- ASIDE HEADER END --&gt;
+
+&lt;!-- PHOTO START --&gt;
+&lt;div class="photo "&gt;
+ &lt;img src="./images/my-photo.png" alt="John Smith photo" /&gt;
+&lt;/div&gt;
+&lt;!-- PHOTO END --&gt;</code></pre>
+
+    <hr><!--- Navigation ---><h4 id="html-structure-navigation">2.3. Navigation</h4>
+
+<p>Navigation should be placed in <code>div</code> with a <code>aside-container</code> class Sample navigation structure:</p>
+<pre class="language-xml"><code>&lt;nav&gt;
+ &lt;!-- NAVIGATION START --&gt;
+ &lt;div class="navbar navbar-expand-md d-block d-md-none"&gt;
+  &lt;button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#main-navigation" aria-expanded="false"&gt;
+   &lt;span class="icon-bar"&gt;&lt;/span&gt;
+   &lt;span class="icon-bar"&gt;&lt;/span&gt;
+   &lt;span class="icon-bar"&gt;&lt;/span&gt;
+  &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div id="main-navigation" class="collapse navbar-collapse d-md-block"&gt;
+  &lt;ul&gt;
+   &lt;li&gt;
+    &lt;a class="active" href="index.html"&gt;About me&lt;/a&gt;
+   &lt;/li&gt;
+   &lt;li&gt;
+    &lt;a href="resume.html"&gt;Resume&lt;/a&gt;
+   &lt;/li&gt;
+   &lt;li&gt;
+    &lt;a href="portfolio.html"&gt;Portfolio&lt;/a&gt;
+   &lt;/li&gt;
+   &lt;li&gt;
+    &lt;a href="blog.html"&gt;Blog&lt;/a&gt;
+   &lt;/li&gt;
+   &lt;li&gt;
+    &lt;a href="contact.html"&gt;Contact&lt;/a&gt;
+   &lt;/li&gt;
+  &lt;/ul&gt;
+ &lt;/div&gt;
+ &lt;!-- NAVIGATION END --&gt;
+&lt;/nav&gt;</code></pre>
+
+    <hr><!--- Social icons ---><h4 id="html-structure-social-icons">2.4. Social icons</h4>
+
+<p>Icons should be placed in <code>div</code> element with a <code>aside-container</code> class or in the <code>nav</code> element. Example below:</p>
+<pre class="language-xml"><code>&lt;div class="socials clearfix"&gt;
+ &lt;a href="#"&gt;&lt;i class="socicon-instagram"&gt;&lt;/i&gt;&lt;/a&gt;
+ &lt;a href="#"&gt;&lt;i class="socicon-envato"&gt;&lt;/i&gt;&lt;/a&gt;
+ &lt;a href="#"&gt;&lt;i class="socicon-youtube"&gt;&lt;/i&gt;&lt;/a&gt;
+ &lt;a href="#"&gt;&lt;i class="socicon-linkedin"&gt;&lt;/i&gt;&lt;/a&gt;
+ &lt;a href="#"&gt;&lt;i class="socicon-facebook"&gt;&lt;/i&gt;&lt;/a&gt;
+ &lt;a href="#"&gt;&lt;i class="socicon-twitter"&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;</code></pre>
+
+    <hr><!--- Footers ---><h4 id="html-structure-footers">2.5. Footers</h4>
+
+<ol><li><strong>At the bottom of the page<br></strong>Structure of the footer located at the bottom of the page is shown below. It should be added by closing the <code>body</code> tag. <br><pre class="language-xml"><code>&lt;footer&gt;
+ &lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+   &lt;div class="col-12"&gt;
+    &lt;div class="copyrights"&gt;
+     All rights reserved &lt;a href="#"&gt;example.com&lt;/a&gt; &amp;copy; 2017                        
+	&lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/footer&gt;​</code></pre>
+</li>
+<li>
+<div><strong>Under the side panel</strong></div>
+Structure of the footer located Under the side panel of the page is shown below. It should be placed after the closing tag with the <code>aside-container</code> class. In addition, you need to add a footer at the bottom of the page and add the <code>visible-xs</code> class to the <code>footer </code> tag. <br><pre class="language-xml"><code>&lt;div class="aside-container"&gt;...&lt;/div&gt;
+&lt;footer class="d-none d-md-block"&gt;
+ &lt;div class="copyrights"&gt;
+  All rights reserved &lt;a href="#"&gt;example.com&lt;/a&gt;&amp;nbsp;&amp;copy;&amp;nbsp;2017
+ &lt;/div&gt;
+&lt;/footer&gt;​</code></pre>
+</li>
+</ol><hr><!--- Template features ---><h3 id="template-features">3. Template features</h3>
+
+
+
+    <hr><!--- Page strucure ---><h4 id="template-features-page-strucure">3.1. Page strucure</h4>
+
+<p>Each page in the template should have a structure as shown below. The number of <code>section</code> elements is arbitrary.</p>
+<pre class="language-xml"><code>...
+&lt;main class="content"&gt;
+ &lt;!--- CONTENT ---&gt;
+ ...
+ &lt;section&gt;
+  &lt;h2&gt;
+   Page title
+  &lt;/h2&gt;
+  &lt;article&gt;
+   Lorem ipsum dolor sit ament ...
+  &lt;/article&gt;
+ &lt;/section&gt;
+ ...
+ &lt;section&gt; ... &lt;/section&gt;
+ ...
+ &lt;!--- CONTENT END ---&gt;
+&lt;/main&gt;
+...</code></pre>
+<p>The above example does not apply to the welcome screen page.</p>
+
+    <hr><!--- Welcome screen ---><h4 id="template-features-welcome-screen">3.2. Welcome screen</h4>
+
+<ol><li><strong>Types of welcome screen page<br></strong>The welcome screen page can be displayed in two ways: <br>- with a image in the background on the entire screen and centered text - default<br>- with the screen split vertically in half, where in one part is displayed image, and the second is displayed text.<br>To enable this type of welcome screen page you must add the class <code>half-page</code> to element with id <code>welcome-screen</code> By default image is displayed on the left side but you can set it to right by adding <code>image-right</code> class. Example:<br><pre class="language-xml"><code>&lt;!--- Page is split into two parts with a photo on the left ---&gt;
+&lt;div id="welcome-screen" class="half-page"&gt; ... &lt;/div&gt; 
+
+&lt;!--- Page is split into two parts with a photo on the right ---&gt;
+&lt;div id="welcome-screen" class="half-page image-right"&gt; ... &lt;/div&gt; </code></pre>
+</li>
+<li>
+<div><strong>How to change background image</strong></div>
+You can change the background image in a three ways. Image should have a size of 1920px / 900px.
+<div>1. First and the easiest way is to overwrite the <code>images/background.png</code> and <code>images/background@2x.png</code> files with your images. Example:</div>
+<div>2. The second way is to change image path in CSS rule <code>#welcome-screen .image</code>.<br><pre class="language-xml"><code>#welcome-screen .image { 
+ background-image: url('../images/my-background.png');
+}
+/* For retina displays */
+@media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx) {
+ #welcome-screen .image { 
+  background-image: url('../images/my-background@2x.png');
+ }
+}​</code></pre>
+<p>3. The last and not recommended method is to set in html code css rule <code>background-image</code>. Example:</p>
+<pre class="language-xml"><code>&lt;div id="welcome-screen"&gt;
+ &lt;div class="image" style="background-image: url(/path/to/my-background.png)" data-rjs="2"&gt;&lt;/div&gt;
+ ...
+&lt;/div&gt; </code></pre>
+<div><strong>How to change information on welcome screen page</strong></div>
+<p>All informations displayed on the welcome screen page are contained in <code>div</code> with class <code>info</code>.</p>
+<div><strong>Available elements</strong></div>
+<p>- Title and description<br> - Social links<br> - Button <br> - Slide down button - used in onepage version. <br> Example: </p>
+<pre class="language-xml"><code>&lt;div class="info"&gt;
+ &lt;!--- BASIC INFORMATIONS START ---&gt;
+ &lt;p class="hello"&gt;Hello, I'm&lt;/p&gt;
+ &lt;h1&gt;John Smith&lt;/h1&gt;
+ &lt;p class="about"&gt;programmer | webdesigner | traveler&lt;/p&gt;
+ &lt;!--- BASIC INFORMATIONS END ---&gt;
+ &lt;!--- BUTTON START ---&gt;
+ &lt;a href="http://example.com/about.html" class="button welcome-screen"&gt;
+  More about me &lt;span class="icon fa fa-angle-right"&gt;&lt;/span&gt;
+ &lt;/a&gt;
+ &lt;!--- BUTTON END ---&gt;
+ &lt;!--- SOCIAL ICONS START ---&gt;
+ &lt;div class="social-icons"&gt;
+  &lt;a href="#" class="icon"&gt;&lt;i class="socicon-instagram"&gt;&lt;/i&gt;&lt;/a&gt;
+  &lt;a href="#" class="icon"&gt;&lt;i class="socicon-envato"&gt;&lt;/i&gt;&lt;/a&gt;
+  &lt;a href="#" class="icon"&gt;&lt;i class="socicon-youtube"&gt;&lt;/i&gt;&lt;/a&gt;
+  &lt;a href="#" class="icon"&gt;&lt;i class="socicon-linkedin"&gt;&lt;/i&gt;&lt;/a&gt;
+  &lt;a href="#" class="icon"&gt;&lt;i class="socicon-facebook"&gt;&lt;/i&gt;&lt;/a&gt;
+  &lt;a href="#" class="icon"&gt;&lt;i class="socicon-twitter"&gt;&lt;/i&gt;&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;!--- SOCIAL ICONS END ---&gt;
+ &lt;!--- SLIDE DOWN BUTTON START ---&gt;
+ &lt;div class="slide-down"&gt;
+  &lt;i class="icon fa fa-chevron-down"&gt;&lt;/i&gt;
+ &lt;/div&gt;
+ &lt;!--- SLIDE DOWN BUTTON END ---&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</li>
+</ol><hr><!--- Resume ---><h4 id="template-features-resume">3.3. Resume</h4>
+
+<ol><li><strong>Download button in title row<br></strong>There is a resume button on the resume page. It is located to the right of the page title. The structure of the row with title and the button is shown below: 
+<pre class="language-xml"><code>&lt;div class="row clearfix"&gt;
+ &lt;div class="col-8 col-lg-6"&gt;
+  &lt;h2&gt;
+   Resume
+  &lt;/h2&gt;
+ &lt;/div&gt;
+ &lt;div class="col-4 col-lg-6 resume-download-button"&gt;
+  &lt;a href="/path/to/my-resume.pdf" class="pull-right button with-icon button-black" title="Download resume"&gt;
+   &lt;span class="d-none d-lg-inline-block"&gt;Download resume&lt;/span&gt; &lt;i class="icon fa fa-download"&gt;&lt;/i&gt;
+  &lt;/a&gt;
+ &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</li>
+<li><strong>Default template</strong><br>The default resume template is shown in the example below. In this template, the icons are displayed at each of the entries. Subsequent entries can be added by copying the <code>li</code> element. <br><pre class="language-xml"><code>&lt;!--- RESUME CONTAINER ---&gt;
+&lt;div class="resume"&gt;
+ &lt;h3&gt;Education&lt;/h3&gt;
+ &lt;ul class="education-list"&gt;
+  &lt;!--- EDUCATION ENTRY ---&gt;
+  &lt;li&gt;
+   &lt;i class="icon icon-education fa fa-graduation-cap"&gt;&lt;/i&gt;
+   &lt;div class="resume-item-title"&gt;
+    Class profile name
+   &lt;/div&gt;
+   &lt;div class="resume-item-subtitle"&gt;
+    Uniwersity name / 2008 - 2016
+   &lt;/div&gt;
+   &lt;p&gt;
+    Lorem ipsum dolor sit amet ...
+   &lt;/p&gt;
+  &lt;/li&gt;
+  &lt;!--- EDUCATION ENTRY END ---&gt;
+ &lt;/ul&gt;
+
+ &lt;h3&gt;Career&lt;/h3&gt;
+ &lt;ul class="career-list"&gt;
+  &lt;!--- CAREER ENTRY ---&gt;
+  &lt;li&gt;
+   &lt;i class="icon icon-career fa fa-briefcase"&gt;&lt;/i&gt;
+   &lt;div class="resume-item-title"&gt;
+    Job name
+   &lt;/div&gt;
+   &lt;div class="resume-item-subtitle"&gt;
+    Company name / 2008 - 2016
+   &lt;/div&gt;
+   &lt;p&gt;
+    Lorem ipsum dolor sit amet ...
+   &lt;/p&gt;
+  &lt;/li&gt;
+  &lt;!--- CAREER ENTRY END ---&gt;
+ &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+</li>
+<li><strong>Timeline template</strong><br>The timeline template is shown in the example below. In ths template, entries are connected with timeline. Subsequent entries can be added by copying the <code>li</code> element. <br><pre class="language-xml"><code>&lt;!--- RESUME CONTAINER ---&gt;
+&lt;div class="resume resume-timeline"&gt;
+ &lt;i class="icon icon-education fa fa-graduation-cap"&gt;&lt;/i&gt;
+ &lt;ul class="education-list"&gt;
+  &lt;!--- EDUCATION ENTRY ---&gt;
+  &lt;li&gt;
+   &lt;div class="resume-item-title"&gt;
+    Class profile name
+   &lt;/div&gt;
+   &lt;div class="resume-item-subtitle"&gt;
+    Uniwersity name / 2008 - 2016
+   &lt;/div&gt;
+   &lt;p&gt;
+    Lorem ipsum dolor sit amet ...
+   &lt;/p&gt;
+  &lt;/li&gt;
+  &lt;!--- EDUCATION ENTRY END ---&gt;
+ &lt;/ul&gt;
+ &lt;i class="icon icon-career fa fa-briefcase"&gt;&lt;/i&gt;
+ &lt;ul class="career-list"&gt;
+  &lt;!--- CAREER ENTRY ---&gt;
+  &lt;li&gt;
+   &lt;div class="resume-item-title"&gt;
+    Job name
+   &lt;/div&gt;
+   &lt;div class="resume-item-subtitle"&gt;
+    Company name / 2008 - 2016
+   &lt;/div&gt;
+   &lt;p&gt;
+    Lorem ipsum dolor sit amet ...
+   &lt;/p&gt;
+  &lt;/li&gt;
+  &lt;!--- CAREER ENTRY END ---&gt;
+ &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+</li>
+<li><strong>Timeline template options</strong><br>Timeline template can be displayed in a few ways.<br> You can connect career and education list by adding <code>resume-timeline-connected</code> class to a <code>div</code> element with class <code>resume-timeline</code>. You can also change pointers to circles by addint <code>resume-timeline-pointers-circle</code> class to a <code>div</code> element with class <code>resume-timeline</code>.<br> Example:
+<pre class="language-xml"><code>&lt;!--- view with timeline and circle pointers ---&gt;
+&lt;div class="resume resume-timeline resume-timeline-pointers-circle"&gt; ... &lt;/div&gt;
+
+&lt;!--- view with timeline and connected lists ---&gt;
+&lt;div class="resume resume-timeline resume-timeline-connected"&gt; ... &lt;/div&gt;
+
+&lt;!--- view with timeline, connected lists and circle pointers ---&gt;
+&lt;div class="resume resume-timeline resume-timeline-connected resume-timeline-pointers-circle"&gt; ... &lt;/div&gt;</code></pre>
+</li>
+</ol><hr><!--- Portfolio ---><h4 id="template-features-portfolio">3.4. Portfolio</h4>
+
+<ol><li><strong>Structure and edit</strong><br>The structure of the portfolio is shown in the example below.<br><pre class="language-xml"><code>&lt;!--- PORTFOLIO CONTAINER ---&gt;
+&lt;div class="portfolio"&gt;
+
+ &lt;!--- PORTFOLIO FILTER ---&gt;
+ &lt;div class="filter text-center"&gt;
+  &lt;a href="#" class="active" data-type="all"&gt;Al&lt;/a&gt;
+  &lt;span class="spacer"&gt;&amp;bull;&lt;/span&gt;
+  &lt;a href="#" data-type="photos"&gt;Photos&lt;/a&gt;
+  &lt;span class="spacer"&gt;&amp;bull;&lt;/span&gt;
+  &lt;a href="#" data-type="websites"&gt;Websites&lt;/a&gt;
+  &lt;span class="spacer"&gt;&amp;bull;&lt;/span&gt;
+  &lt;a href="#" data-type="graphics"&gt;Graphics&lt;/a&gt;
+ &lt;/div&gt;
+
+ &lt;ul class="portfolio-list"&gt;
+  &lt;!--- PORTFOLIO ENTRY ---&gt;
+  &lt;li data-type="photos"&gt;
+   &lt;!--- project info displayed on list ---&gt;
+   &lt;a href="#project-example1"&gt;
+    &lt;img src="http://www.example.com/path/to/project-image-list.png" alt="Example 1 alternative text" /&gt;
+    &lt;div class="hover-overlay"&gt;
+     &lt;div class="project-title"&gt;&lt;span&gt;Example 1&lt;/span&gt;&lt;/div&gt;
+     &lt;div class="project-description"&gt;
+      Lorem ipsum dolor sit amet ...
+     &lt;/div&gt;
+    &lt;/div&gt;
+   &lt;/a&gt;
+   &lt;!--- project info displayed on popup ---&gt;
+   &lt;div id="project-example1" class="mfp-hide popup row"&gt;
+    &lt;div class="text-center"&gt;&lt;img src="http://www.example.com/path/to/project-image-full.png" alt="Example 1 alternative text" /&gt;&lt;/div&gt;
+    &lt;div class="info"&gt;
+     &lt;div class="title"&gt;Example 1&lt;/div&gt;
+     &lt;p&gt;Lorem ipsum dolor sit amet ... &lt;/p&gt;
+    &lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;!--- placeholders used to correct display last line of projects list ---&gt;
+  &lt;li class="placeholder"&gt;&lt;/li&gt;
+  &lt;li class="placeholder"&gt;&lt;/li&gt;
+  &lt;li class="placeholder"&gt;&lt;/li&gt;
+  &lt;li class="placeholder"&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;!--- POPUP PATTERN ---&gt;
+ &lt;div class="portfolio-details-popup" data-navigation="true" data-closebutton="true" data-dimmedbackground="true"&gt;
+  &lt;div class="project-details-wrapper"&gt;
+   &lt;div class="project-info"&gt;
+    &lt;h3 class="project-title"&gt;&lt;/h3&gt;
+    &lt;div class="project-image"&gt;&lt;img src="" alt="" /&gt;&lt;/div&gt;
+    &lt;div class="project-description"&gt;&lt;/div&gt;
+   &lt;/div&gt;
+   &lt;div class="popup-controls"&gt;
+    &lt;div class="popup-close"&gt;&lt;i class="icon fa fa-times"&gt;&lt;/i&gt;&lt;/div&gt;
+    &lt;div class="popup-navigation"&gt;
+     &lt;div class="prev-project"&gt;&lt;i class="icon fa fa-chevron-left"&gt;&lt;/i&gt;&lt;/div&gt;
+     &lt;div class="next-project"&gt;&lt;i class="icon fa fa-chevron-right"&gt;&lt;/i&gt;&lt;/div&gt;
+    &lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;!--- POPUP PATTERN END ---&gt;
+&lt;/div&gt;​</code></pre>
+</li>
+<li><strong>Filters</strong><br>If you want to add more types of projects in the filter simply copy the <code>a</code> item and the separator. Next improve the value of the attribute <code>data-type</code> and the label. Remember to assigning proper attribute value <code>data-type</code> to elements in the projects list.
+<pre class="language-xml"><code>...
+&lt;div class="portfolio"&gt;
+
+ &lt;!--- PORTFOLIO FILTER ---&gt;
+ &lt;div class="filter text-center"&gt;
+  &lt;!--- show all works ---&gt;
+  &lt;a href="#" class="active" data-type="all"&gt;Al&lt;/a&gt;
+  &lt;!--- separator ---&gt;
+  &lt;span class="spacer"&gt;&amp;bull;&lt;/span&gt;
+  &lt;!--- show only elements with type "example" ---&gt;
+  &lt;a href="#" data-type="example"&gt;Example&lt;/a&gt;
+  &lt;span class="spacer"&gt;&amp;bull;&lt;/span&gt;
+  &lt;!--- show only elements with type "example_2" ---&gt;
+  &lt;a href="#" data-type="example_2"&gt;Example 2&lt;/a&gt;
+ &lt;/div&gt;
+
+ &lt;!--- PORTFOLIO LIST ---&gt;
+ &lt;ul class="portfolio-list"&gt;
+  &lt;li data-type="example"&gt; ... &lt;/li&gt;
+  &lt;li data-type="example_2"&gt; ... &lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/div&gt;
+...</code></pre>
+</li>
+</ol><p> </p>
+
+    <hr><!--- Blog (list) ---><h4 id="template-features-blog-list">3.5. Blog (list)</h4>
+
+<ol><li><strong>Structure and edit</strong><br>The structure of the blog entries list is shown in the example below. Subsequent entries can be added by copying the <code>li</code> element.
+<pre class="language-xml"><code>&lt;!--- BLOG CONTAINER ---&gt;
+&lt;div class="blog"&gt;
+&lt;!--- BLOG LIST CONTAINER ---&gt;
+ &lt;ul class="blog-list"&gt;
+ &lt;!--- BLOG LIST ENTRY ---&gt;
+  &lt;li&gt;
+   &lt;div class="clearfix"&gt;
+    &lt;div class="post-photo"&gt;
+     &lt;a href="http://www.example.com/blog/post-title"&gt;
+      &lt;img src="http://www.example.com/path/to/blog-list-image.png" alt="Blog list image alternative text" /&gt;
+     &lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="post-info"&gt;
+     &lt;h3&gt;
+      &lt;a href="#"&gt;Post title&lt;/a&gt;
+     &lt;/h3&gt;
+     &lt;!--- short informations about post ie. author, category, date, tags, etc. can be placed here ---&gt;
+     &lt;div class="post-details"&gt;
+      &lt;div class="post-detail-info"&gt;
+       &lt;i class="icon fa fa-user"&gt;&lt;/i&gt;&lt;a href="#"&gt;John Smith&lt;/a&gt;
+       &lt;i class="icon fa fa-folder"&gt;&lt;/i&gt;Category name
+      &lt;/div&gt;
+     &lt;/div&gt;
+     &lt;p&gt;Lorem ipsum dolor sit amet ...&lt;/p&gt;
+     &lt;a href="http://www.example.com/blog/post-title" class="button button-black button-small read-more"&gt;
+      Read more &lt;i class="icon fa fa-angle-right"&gt;&lt;/i&gt;
+     &lt;/a&gt;
+    &lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;!--- BLOG LIST ENTRY END ---&gt;
+ &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+</li>
+<li><strong>Images on right</strong><br>If you want to display images on right side on the entries list, simply add <code>photos-right</code> class to <code>ul</code> element. Example: <br><pre class="language-xml"><code>&lt;!--- BLOG CONTAINER ---&gt;
+&lt;div class="blog"&gt;
+&lt;!--- BLOG LIST CONTAINER ---&gt;
+ &lt;ul class="blog-list photos-right"&gt;
+  ...
+ &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+</li>
+<li><strong>Chessboard</strong><br>If you want to display entries list as chessboard, just add <code>chessboard</code> class to <code>ul</code> element. Example: <br><pre class="language-xml"><code>&lt;!--- BLOG CONTAINER ---&gt;
+&lt;div class="blog"&gt;
+&lt;!--- BLOG LIST CONTAINER ---&gt;
+ &lt;ul class="blog-list chessboard"&gt;
+  ...
+ &lt;/ul&gt;
+&lt;/div&gt;​</code></pre>
+</li>
+</ol><hr><!--- Blog (entry) ---><h4 id="template-features-blog-entry">3.6. Blog (entry)</h4>
+
+<ol><li><strong>Structure and edit</strong><br>Page with post entry has the same structure as a static page. The only difference is the requirement to use the class <code>blog</code> and a <code>blog-entry</code>. It should be added to the element containing the entry, eg. <code>section</code>. This allows you to add to post additional information about the author, category, date, tags, etc. <br><pre class="language-xml"><code>&lt;!--- Element with "blog" and "blog-entry" class ---&gt;
+&lt;section class="blog blog-entry"&gt;
+ &lt;!--- Post image ---&gt;
+ &lt;img src="/path/to/entry/image.png" alt="Entry title" /&gt;
+ &lt;!--- Post title ---&gt;
+ &lt;h2&gt;
+  Entry title
+ &lt;/h2&gt;
+ &lt;article&gt;
+  &lt;!--- Additional post informations ---&gt;
+  &lt;div class="row post-details"&gt;
+   &lt;div class="col-6 post-details-left"&gt;
+    &lt;div class="post-detail-info"&gt;
+	 &lt;!--- Author name ---&gt;
+     &lt;i class="icon fa fa-user"&gt;&lt;/i&gt;
+     &lt;a href="#"&gt;John Smith&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="post-detail-info"&gt;
+	 &lt;!--- Category name ---&gt;
+     &lt;i class="icon fa fa-folder"&gt;&lt;/i&gt;
+     Category name
+    &lt;/div&gt;
+   &lt;/div&gt;
+   &lt;div class="col-6 post-details-right"&gt;
+    &lt;!--- Date and hour ---&gt;
+    &lt;div class="post-detail-info"&gt;
+     January 1, 2017
+     &lt;i class="icon fa fa-calendar"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div class="post-detail-info"&gt;
+     10:00
+     &lt;i class="icon fa fa-clock-o"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+   &lt;/div&gt;
+   &lt;div class="col-12 post-details-left"&gt;
+    &lt;!--- Tags ---&gt;
+    &lt;div class="post-detail-info"&gt;
+     &lt;i class="icon fa fa-tags"&gt;&lt;/i&gt;
+     &lt;a href="#"&gt;Tag 1&lt;/a&gt;,
+     &lt;a href="#"&gt;Tag 2&lt;/a&gt;,
+     &lt;a href="#"&gt;Tag 3&lt;/a&gt;
+    &lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!--- Post content ---&gt;
+  &lt;p&gt;
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+  &lt;/p&gt;
+  &lt;p&gt;
+   Nulla nec nisl ornare, aliquam erat vitae, tristique leo...
+  &lt;/p&gt;
+ &lt;/article&gt;
+&lt;/section&gt;</code></pre>
+</li>
+<li><strong>Additional informations</strong><br>Below an example of how you can add additional information about the post. If you want to pull this informations on the center, left or right side of the page, simply add to it's container class <code>details-info-center</code>, <code>details-info-left</code> or <code>details-info-right</code><br><pre class="language-xml"><code>&lt;!--- Shows informations in one line ---&gt;
+&lt;div class="col-xs-12 post-details-left post-details-inline"&gt;
+ &lt;div class="post-detail-info"&gt;
+  &lt;i class="icon fa fa-user"&gt;&lt;/i&gt;
+  &lt;a href="#"&gt;John Smith&lt;/a&gt;
+ &lt;/div&gt;
+ &lt;div class="post-detail-info"&gt;
+  &lt;i class="icon fa fa-folder"&gt;&lt;/i&gt;
+  Category name
+ &lt;/div&gt;
+ &lt;div class="post-detail-info"&gt;
+  &lt;i class="icon fa fa-calendar"&gt;&lt;/i&gt;
+  &lt;?php echo date('M d, Y')?&gt;
+ &lt;/div&gt;
+ &lt;div class="post-detail-info"&gt;
+  &lt;i class="icon fa fa-clock-o"&gt;&lt;/i&gt;
+  &lt;?php echo date('H:i')?&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!--- Shows informations each one in new line ---&gt;
+&lt;div class="post-detail-info"&gt;
+ &lt;i class="icon fa fa-user"&gt;&lt;/i&gt;
+ &lt;a href="#"&gt;John Smith&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="post-detail-info"&gt;
+ &lt;i class="icon fa fa-folder"&gt;&lt;/i&gt;
+ &lt;span&gt;Category name&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="post-detail-info"&gt;
+ &lt;i class="icon fa fa-calendar"&gt;&lt;/i&gt;
+ &lt;span&gt;Febryary 01, 2017&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="post-detail-info"&gt;
+ &lt;i class="icon fa fa-clock-o"&gt;&lt;/i&gt;
+ &lt;span&gt;12:00&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!--- On to the left ---&gt;
+&lt;div class="post-details-left"&gt;
+ &lt;div class="post-detail-info"&gt; ... &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!--- Centered ---&gt;
+&lt;div class="post-details-center"&gt;
+ &lt;div class="post-detail-info"&gt; ... &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!--- On to the right ---&gt;
+&lt;div class="post-details-right"&gt;
+ &lt;div class="post-detail-info"&gt; ... &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</li>
+</ol><hr><!--- Contact, map &amp; reCaptcha ---><h4 id="template-features-contact-map">3.7. Contact, map &amp; reCaptcha</h4>
+
+<ol><li><strong>Structure and contact information</strong><br>Contact page has the same structure as a static page. The only difference is the requirement to use the class <code>contact</code>. It should be added to the element containing the entry, eg. <code>section</code>. This allows you to add additional contact information and Google Map. Below an example of how you can add contact information:
+<pre class="language-xml"><code>&lt;!--- CONTACT INFORMATION CONTAINER ---&gt;
+&lt;div class="contact-info-wrapper"&gt;
+ &lt;div class="contact-info"&gt;
+  &lt;!--- CONTACT INFORMATION ENTRY ---&gt;
+  &lt;div class="item phone"&gt;
+   &lt;span class="info"&gt;
+    &lt;strong&gt;Phone:&lt;br&gt;&lt;/strong&gt;
+    123456789
+   &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;!--- CONTACT INFORMATION ENTRY END ---&gt;
+  &lt;div class="item mobile"&gt;
+   &lt;span class="info"&gt;
+    &lt;strong&gt;Mobile:&lt;br&gt;&lt;/strong&gt;
+    123456789
+   &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="item email"&gt;
+   &lt;span class="info"&gt;
+    &lt;strong&gt;E-mail:&lt;br&gt;&lt;/strong&gt;
+    &lt;a href="#" data-name="contact" data-domain="example.com" class="mail-hash"&gt;&lt;/a&gt;
+   &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="item address"&gt;
+   &lt;span class="info"&gt;
+    &lt;strong&gt;Address:&lt;br&gt;&lt;/strong&gt;
+    Cracow, Poland
+   &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="item website"&gt;
+   &lt;span class="info"&gt;
+    &lt;strong&gt;Website:&lt;br&gt;&lt;/strong&gt;
+    &lt;a href="#"&gt;www.example.com&lt;/a&gt;
+   &lt;/span&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>You can also use icons instead of names or both options at the same time</p>
+<pre class="language-xml"><code>&lt;!--- CONTACT INFORMATION CONTAINER ---&gt;
+&lt;div class="contact-info-wrapper"&gt;
+ &lt;div class="contact-info"&gt;
+  &lt;!--- CONTACT INFORMATION ENTRY ---&gt;
+  &lt;div class="item phone"&gt;
+   &lt;i class="icon fa fa-phone"&gt;&lt;/i&gt;
+   &lt;span class="info"&gt;
+    &lt;strong&gt;Phone:&lt;br&gt;&lt;/strong&gt;
+    123456789
+   &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;!--- CONTACT INFORMATION ENTRY END ---&gt;
+  &lt;div class="item mobile"&gt;
+   &lt;i class="icon fa fa-mobile"&gt;&lt;/i&gt;
+   &lt;span class="info"&gt;
+    &lt;strong&gt;Mobile:&lt;br&gt;&lt;/strong&gt;
+    123456789
+   &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="item email"&gt;
+   &lt;i class="icon fa fa-envelope"&gt;&lt;/i&gt;
+   &lt;span class="info"&gt;
+    &lt;strong&gt;E-mail:&lt;br&gt;&lt;/strong&gt;
+    &lt;a href="#" data-name="contact" data-domain="example.com" class="mail-hash"&gt;&lt;/a&gt;
+   &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="item address"&gt;
+   &lt;i class="icon fa fa-map-marker"&gt;&lt;/i&gt;
+   &lt;span class="info"&gt;
+    &lt;strong&gt;Address:&lt;br&gt;&lt;/strong&gt;
+    Kraków, Poland
+   &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="item website"&gt;
+   &lt;i class="icon fa fa-globe"&gt;&lt;/i&gt;
+   &lt;span class="info"&gt;
+    &lt;strong&gt;Website:&lt;br&gt;&lt;/strong&gt;
+    &lt;a href="#"&gt;www.example.com&lt;/a&gt;
+   &lt;/span&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;​</code></pre>
+</li>
+<li><strong>Google Map</strong><br>An example of adding map on a page is shown below. You can provide basic parameters of the map with the <code>data</code> attributes of element with id <code>contact-map</code>.<br> - <code>data-lat</code> - Latitude<br> - <code>data-lng</code> - Longtitude<br> - <code>data-zoom</code> - Map zoom<br><pre class="language-xml"><code>&lt;div class="contact"&gt;
+ &lt;div id="contact-map" data-lat="44.540" data-lng="-78.546" data-zoom="8"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;!--- If you have two or more maps on one page this script should by added only once ---&gt; 
+&lt;script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"&gt;&lt;/script&gt;</code></pre>
+<p>In place of <samp>YOUR_API_KEY</samp>, you have to insert your key to access the Google Maps API. If you don't know how to get it click <a href="https://developers.google.com/maps/documentation/javascript/get-api-key">here</a>.</p>
+</li>
+<li><strong>Email protection</strong><br>If you want to protect your email address against spam robots you can do it by adding class <code>mail-hash</code> and pass email parts in <code>data</code> attributes. Example:
+<pre class="language-xml"><code>&lt;!--- With empty text ---&gt;
+&lt;a href="#" data-name="contact" data-domain="example.com" class="mail-hash"&gt;&lt;/a&gt;
+Result: 
+&lt;a href="mailto:contact@example.com" data-name="contact" data-domain="example.com" class="mail-hash"&gt;contact@example.com&lt;/a&gt;
+
+&lt;!--- With custom text ---&gt;
+&lt;a href="#" data-name="contact" data-domain="example.com" class="mail-hash"&gt;Send me an email&lt;/a&gt;
+Result: 
+&lt;a href="mailto:contact@example.com" data-name="contact" data-domain="example.com" class="mail-hash"&gt;Send me an email&lt;/a&gt;</code></pre>
+</li>
+<li><strong>reCaptcha</strong><br>If you want to use reCaptcha, you need to add the following code in the contact form:
+<pre class="language-xml"><code>&lt;div id="recaptcha" class="clearfix"&gt;
+ &lt;div class="g-recaptcha" data-sitekey="YOUR_API_KEY"&gt;&lt;/div&gt;
+ &lt;input type="hidden" data-message="reCaptcha failed" class="hiddenRecaptcha" name="hiddenRecaptcha" id="hiddenRecaptcha"&gt;
+&lt;/div&gt;</code></pre>
+<p>Also, you need to add the JavaScript google library, at the bottom of the page:</p>
+<pre class="language-xml"><code>&lt;script src='https://www.google.com/recaptcha/api.js'&gt;&lt;/script&gt;</code></pre>
+<p>You can specify the reCaptcha failed message in <code>data-message</code> attribute of hidden input with class <code>hiddenREcaptcha</code>.<br>In place of <samp>YOUR_API_KEY</samp>, you have to insert your key to access the Google Maps API. If you don't know how to get it click <a href="https://www.google.com/recaptcha">here</a>. <br>Also you need to fill reCaptcha settings in <a href="#php-configure-contact-form">PHP configuration</a>.</p>
+</li>
+</ol><hr><!--- Error 404 page ---><h4 id="template-features-error-404-page">3.8. Error 404 page</h4>
+
+<p>The structure of the page with an error message is very simple. It contains only the icon and text with information about the problem of finding the search page. Example:</p>
+<pre class="language-xml"><code>&lt;section class="error404"&gt;
+ &lt;h2&gt;
+  Page not found
+ &lt;/h2&gt;
+ &lt;article&gt;
+  &lt;p&gt;
+   &lt;i class="icon fa fa-frown-o"&gt;&lt;/i&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+   Sorry, page you are looking for was not found.
+  &lt;/p&gt;
+ &lt;/article&gt;
+&lt;/section&gt;</code></pre>
+
+    <hr><!--- Forms ---><h4 id="template-features-forms">3.9. Forms</h4>
+
+<ol><li>The template has styled form elements. If you want to use them, form or another parent element should have <code>form</code> class. It is also possible to use an additional look by adding <code>simple</code> class to element with the <code>form</code> class. <br><pre class="language-xml"><code>&lt;!--- Default form look ---&gt;
+&lt;form name="example-form" class="form" action="" method="POST"&gt;
+...
+&lt;/form&gt;
+
+&lt;!--- Additional form look ---&gt;
+&lt;form name="example-form" class="form simple" action="" method="POST"&gt;
+...
+&lt;/form&gt;​</code></pre>
+</li>
+<li><strong>The structure of the form elements</strong><br><pre class="language-xml"><code>&lt;form name="example-form" class="form" action="" method="POST"&gt;
+ &lt;!--- Text fields np. text, password, email, data, number etc.---&gt;
+ &lt;label&gt;
+  &lt;span&gt;Field label:&lt;/span&gt;
+  &lt;input type="text" name="example-text" value="" placeholder="Field placeholder"&gt;
+ &lt;/label&gt;
+ 
+ &lt;!--- Textarea field---&gt;
+ &lt;label&gt;
+  &lt;span&gt;Field label:&lt;/span&gt;
+  &lt;textarea name="example-textarea" rows="4" placeholder="Textearea placeholder"&gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+ 
+ &lt;!--- Checkbox field ---&gt;
+ &lt;div class="checkbox"&gt;
+  &lt;input type="checkbox" id="example-checkbox" name="example-checkbox" value="1"&gt;
+  &lt;label for="example-checkbox"&gt;
+   Checkbox label
+  &lt;/label&gt;
+ &lt;/div&gt;
+ 
+ &lt;!--- Radio field ---&gt;
+ &lt;div class="radio"&gt;
+  &lt;input type="radio" id="example-radio" name="example-radio" value="1"&gt;
+  &lt;label for="example-radio"&gt;
+   Radio label
+  &lt;/label&gt;
+ &lt;/div&gt;
+ 
+ &lt;!--- Select field ---&gt;
+ &lt;label&gt;
+  &lt;span&gt;Select label&lt;/span&gt;
+  &lt;span class="custom-select"&gt;
+   &lt;select name="example-select"&gt;
+    &lt;option value=""&gt;Select option&lt;/option&gt;
+    &lt;option value="1"&gt;Select option 2&lt;/option&gt;
+    &lt;option value="2"&gt;Select option 3&lt;/option&gt;
+   &lt;/select&gt;
+  &lt;/span&gt;
+ &lt;/label&gt;
+&lt;/form&gt;</code></pre>
+</li>
+</ol><hr><!--- Buttons ---><h4 id="template-features-buttons">3.10. Buttons</h4>
+
+<p>Buttons can be used on elements <code>a</code>, <code>div</code>, <code>span</code>, <code>button</code> and <code>input</code> by adding to it a class <code>button</code> Example:</p>
+<pre class="language-xml"><code>&lt;button type="submit" class="button"&gt;Button label&lt;/button&gt;</code></pre>
+<p>You can also add icons in the text of the button (without input fields). The element that contains the icon should have <code>icon</code> class. Example:</p>
+<pre class="language-xml"><code>&lt;button type="submit" class="button"&gt;Button label &lt;i class="icon fa fa-paper-plane"&gt;&lt;/i&gt;&lt;/button&gt;</code></pre>
+
+    <hr><!--- Gallery ---><h4 id="template-features-gallery">3.11. Gallery</h4>
+
+<p>You can add to the gallery. To do this, add the class <code>gallery-list</code> to the list. Example: </p>
+<pre class="language-xml"><code>&lt;ul class="gallery-list"&gt;
+ ...
+ &lt;li&gt;
+  &lt;a href="/path/to/images/image-full-size-1.png"&gt;
+   &lt;img src="/path/to/images/image-list-size-1.png" alt="Alternative text"&gt;
+  &lt;/a&gt;
+ &lt;/li&gt;
+ ...
+ &lt;li class="placeholder"&gt;&lt;/li&gt;
+ &lt;li class="placeholder"&gt;&lt;/li&gt;
+ &lt;li class="placeholder"&gt;&lt;/li&gt;
+ &lt;li class="placeholder"&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<p>Elements with <code>placeholder</code> class are necessary to correctly display the last line of the gallery. They do not affect the look in any way.</p>
+
+    <hr><!--- Clients ---><h4 id="template-features-clients">3.12. Clients</h4>
+
+<ol><li><strong>Structure</strong><br>Example of the structure customer list is shown in the example below:
+<pre class="language-xml"><code>&lt;div class="clients"&gt;
+ &lt;ul class="clients-list"&gt;
+  ...
+  &lt;li&gt;
+   &lt;a href="http://www.example.com" target="_blank"&gt;
+    &lt;img src="/path/to/client-logo/example.png" alt="Example client"&gt;
+    &lt;img class="gray" src="/path/to/client-logo/example-gray.png" alt="Example client"&gt;
+   &lt;/a&gt;
+  &lt;/li&gt;
+  ...
+  &lt;li class="placeholder"&gt;&lt;/li&gt;
+  &lt;li class="placeholder"&gt;&lt;/li&gt;
+  &lt;li class="placeholder"&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+<p>Photo with <code>gray</code> class is shown only on hover. You can skip it, but due to the fact that not all browsers support the CSS filters, it is recommended to use it. <br> Elements of class "placeholder" are necessary to correctly align the last line of the list. They do not affect in any way the look.</p>
+</li>
+<li><strong>Carousel</strong><br>To create a slider with a list of clients, the list should have <code>clients-carousel</code> class. Example: <br><pre class="language-xml"><code>&lt;div class="clients"&gt;
+ &lt;div class="clients-carousel"&gt;
+  ...
+  &lt;div class="client"&gt;
+   &lt;a href="http://www.example.com" target="_blank"&gt;
+    &lt;img src="/path/to/client-logo/example.png" alt="Example client"&gt;
+    &lt;img class="gray" src="/path/to/client-logo/example-gray.png" alt="Example client"&gt;
+   &lt;/a&gt;
+  &lt;/div&gt;
+  ...
+ &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</li>
+</ol><hr><!--- Testimonials ---><h4 id="template-features-testimonials">3.13. Testimonials</h4>
+
+<ol><li><strong>Default</strong> <br>The default view is shown in the example below.
+<pre class="language-xml"><code>&lt;div class="testimonials"&gt;
+ ...
+ &lt;div class="testimonial"&gt;
+  &lt;div class="clearfix author-info"&gt;
+   &lt;!--- Author photo ---&gt;
+   &lt;div class="photo"&gt;
+    &lt;img src="/path/to/image/author.png" alt="John Smith"&gt;
+   &lt;/div&gt;
+   &lt;div class="title-wrapper"&gt;
+    &lt;!--- Author name ---&gt;
+    &lt;div class="title"&gt;John Smith&lt;/div&gt;
+    &lt;!--- Subtitle  ---&gt;
+    &lt;div class="subtitle"&gt;Example CEO&lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!--- Content ---&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet, ...&lt;/p&gt;
+ &lt;/div&gt;
+ ...
+&lt;/div&gt;​</code></pre>
+</li>
+<li><strong>Author name on bottom</strong><br>It is also possible to place the author's name on the bottom. You have to add the class <code>author-on-bottom</code>. Example:
+<pre class="language-xml"><code>&lt;div class="testimonials"&gt;
+ ...
+ &lt;div class="testimonial author-on-bottom"&gt;
+  &lt;!--- Author photo ---&gt;
+  &lt;div class="photo"&gt;
+   &lt;img src="/path/to/image/author.png" alt="John Smith"&gt;
+  &lt;/div&gt;
+  &lt;!--- Content ---&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet, consectetur...&lt;/p&gt;
+  &lt;div class="clearfix author-info text-right"&gt;
+   &lt;!--- Author name ---&gt;
+   &lt;span class="title"&gt;John Smith&lt;/span&gt;
+   &lt;!--- Separator between name and subtitle ---&gt;
+   &lt;span class="separator"&gt;/&lt;/span&gt;
+   &lt;!--- Subtitle ---&gt;
+   &lt;span class="subtitle"&gt;Example CEO&lt;/span&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+ ...
+&lt;/div&gt;</code></pre>
+</li>
+<li><strong>Carousel</strong><br>You can create testimonial carousel. Element, which contains the list should have a class <code>testimonial-carousel</code>. Example:
+<pre class="language-xml"><code>&lt;div class="testimonial-carousel"&gt;
+ ...
+ &lt;!--- Carousel item ---&gt;
+ &lt;div class="testimonial"&gt;
+  &lt;div class="clearfix author-info"&gt;
+   &lt;div class="photo"&gt;
+    &lt;img src="/path/to/image/author.png" alt="John Smith"&gt;
+   &lt;/div&gt;
+   &lt;div class="title-wrapper"&gt;
+    &lt;div class="title"&gt;John Smith&lt;/div&gt;
+    &lt;div class="subtitle"&gt;Example CEO&lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet, ...&lt;/p&gt;
+ &lt;/div&gt;
+ ...
+&lt;/div&gt;​</code></pre>
+</li>
+</ol><hr><!--- Skills ---><h4 id="template-features-skills">3.14. Skills</h4>
+
+<p>You can add information about your skills. Example:</p>
+<pre class="language-xml"><code>&lt;div class="skill-wrapper"&gt;
+ &lt;!--- Skill label ---&gt;
+ &lt;div class="skill-label"&gt;Example skill&lt;span&gt; - 80%&lt;/span&gt;&lt;/div&gt;
+ &lt;!--- Skill bar ---&gt;
+ &lt;div class="skill skill-80"&gt;
+  &lt;div class="skill-fill"&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>To element with <code>skill</code> class you have to add class with information about your skill, e.g. for 40% skill add class <code>skill-40</code> Adding of this class is necessary to properly fill the skill bar.<br> You can also change the size of the progress bar to a smaller or larger by adding the element of class <code>skill</code> one of the classes: <code>small</code> or big. Example:</p>
+<pre class="language-xml"><code>&lt;!--- Small version ---&gt;
+&lt;div class="skill-wrapper"&gt;
+ &lt;!--- Skill label ---&gt;
+ &lt;div class="skill-label"&gt;Example skill&lt;span&gt; - 80%&lt;/span&gt;&lt;/div&gt;
+ &lt;!--- Skill bar ---&gt;
+ &lt;div class="skill skill-80 small"&gt;
+  &lt;div class="skill-fill"&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!--- Big version ---&gt;
+&lt;div class="skill-wrapper"&gt;
+ &lt;!--- Skill label ---&gt;
+ &lt;div class="skill-label"&gt;Example skill&lt;span&gt; - 80%&lt;/span&gt;&lt;/div&gt;
+ &lt;!--- Skill bar ---&gt;
+ &lt;div class="skill skill-80 big"&gt;
+  &lt;div class="skill-fill"&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <hr><!--- Pagination ---><h4 id="template-features-pagination">3.15. Pagination</h4>
+
+<p>Pagination structure is shown in the example below:</p>
+<pre class="language-xml"><code>&lt;div class="pagination-wrapper"&gt;
+ &lt;ul class="pagination"&gt;
+  &lt;li&gt;
+   &lt;a href="http://www.example.com/page/2" title="Previous"&gt;
+    &lt;span&gt;&amp;laquo;&lt;/span&gt;
+   &lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.example.com/"&gt;1&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.example.com/page/2"&gt;2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.example.com/page/3" class="current"&gt;3&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.example.com/page/4"&gt;4&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://www.example.com/page/5"&gt;5&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+   &lt;a href="http://www.example.com/page/4" title="Next"&gt;
+    &lt;span&gt;&amp;raquo;&lt;/span&gt;
+   &lt;/a&gt;
+  &lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+    <hr><!--- Helper classes ---><h4 id="template-features-helper-classes">3.16. Helper classes</h4>
+
+<ul><li><code>full-width</code> - Set content to full width of section</li>
+<li><code>full-width-image</code> - Set image to full width of <code>section</code>, and if image is first element pull it to the top of the <code>section</code></li>
+<li><code>marginB30</code> - Adding 30px margin on bottom</li>
+<li><code>marginB50</code> - Adding 50px margin on bottom</li>
+<li><code>marginT30</code> - Adding 30px margin on top</li>
+<li><code>marginT50</code> - Adding 50px margin on top</li>
+</ul><hr><!--- RTL ---><h4 id="template-features-rtl">3.17. RTL</h4>
+
+<p>Template has RTL support. To enable it simply add <code>rtl</code> class to <code>body</code> tag and add <code>dir="rtl"</code> attribute to <code>html</code> tag. Example:</p>
+<pre class="language-xml"><code>&lt;!DOCTYPE html&gt;
+&lt;!-- PAGE LANGUAGE --&gt;
+&lt;html lang="en" dir="rtl"&gt;
+ &lt;head&gt;
+  ...
+ &lt;/head&gt;
+ &lt;body class="rtl"&gt;
+  ...
+ &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+    <hr><!--- Images sizes ---><h3 id="images-sizes">4. Images sizes</h3>
+
+<p>Preferred images sizes in theme.</p>
+<ul><li>Welcome screen<br> - width: 1920px<br> - height: 1080px<br><br></li>
+<li>My photo / logo<br> - width: 293px<br> - height: 250px<br><br></li>
+<li>Blog list<br> - width: 400px<br> - height: 400px<br><br></li>
+<li>Blog entry<br> - width: 900px<br> - height: any<br><br></li>
+<li>Clients<br> - width: 340px<br> - height: 170px<br><br></li>
+<li>Gallery - list<br> - width: 340px<br> - height: 340px<br><br></li>
+<li>Gallery - full size<br> - width: any<br> - height: any<br><br></li>
+<li>Portfolio - list<br> - width: 440px<br> - height: 440px<br><br></li>
+<li>Portfolio - full size<br> - width: min 740px<br> - height: any<br><br></li>
+<li>Testimonials<br> - width: 80px<br> - height: 80px</li>
+</ul><hr><!--- CSS ---><h3 id="css">5. CSS</h3>
+
+
+
+    <hr><!--- Structure &amp; files ---><h4 id="css-structure-files">5.1. Structure &amp; files</h4>
+
+<p>All files with CSS styles are placed in the directory /css. List of all files:</p>
+<ul><li><samp>bootstrap.min.css</samp> - Bootstrap library</li>
+<li><samp>font-awesome.min.css</samp> - Font awesome library</li>
+<li><samp>leaflet.css</samp> - Leaflet library</li>
+<li><samp>magnific-popup.css</samp> - Magnific popup library</li>
+<li><samp>normalize.css</samp> - Normalize CSS library</li>
+<li><samp>slick-theme.css</samp> - Slick slider library</li>
+<li><samp>slick.css</samp> - Slick slider library</li>
+<li><samp>socicon.css</samp> - Socicons library</li>
+<li><samp>styles-blue.css</samp> - Theme styles with blue color version</li>
+<li><samp>styles-blue.min.css</samp> - Compressed styles with blue color version</li>
+<li><samp>styles-default.css</samp> - Theme styles with default (red) color version</li>
+<li><samp>styles-default.min.css</samp> - Compressed styles with default (red) color version</li>
+<li><samp>styles-green.css</samp> - Theme styles with green color version</li>
+<li><samp>styles-green.min.css</samp> - Compressed styles with green color version</li>
+</ul><hr><!--- Including to template ---><h4 id="css-including-to-template">5.2. Including to template</h4>
+
+<ol><li><strong>Uncompressed styles</strong><br>If you want to use in the template uncompressed CSS files then file <samp>css/normalize.css</samp> should be attached as first and <code>css/styles-*.css</code> file sholud be last. In addition, the <samp>css/slick.css</samp> should be included before<samp> css/slick-theme.css</samp> file. Other files can be included in any order. Example:
+<pre class="language-xml"><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+ &lt;head&gt;
+ ...
+ &lt;!--- css/normalize.css must be first ---&gt;
+ &lt;link href="/css/normalize.css" media="all" rel="stylesheet" type="text/css" &gt;
+ 
+ &lt;!--- other required libraries ---&gt;
+ &lt;link href="/css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css" &gt;
+ &lt;link href="/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" &gt;
+ &lt;link href="/css/leaflet.css" media="all" rel="stylesheet" type="text/css" &gt;
+ &lt;link href="/css/magnific-popup.css" media="all" rel="stylesheet" type="text/css" &gt;
+ &lt;link href="/css/normalize.css" media="all" rel="stylesheet" type="text/css" &gt;
+ &lt;!-- css/slick.css before /css/slick-theme.css ---&gt;
+ &lt;link href="/css/slick.css" media="all" rel="stylesheet" type="text/css" &gt;
+ &lt;link href="/css/slick-theme.css" media="all" rel="stylesheet" type="text/css" &gt;
+ &lt;link href="/css/socicon.css" media="all" rel="stylesheet" type="text/css" &gt;
+ 
+ &lt;!--- css/styles-*.css must be last ---&gt;
+ &lt;link href="/css/styles-default.css" media="all" rel="stylesheet" type="text/css" &gt;
+ ...
+ &lt;/head&gt;
+ ...
+&lt;/html&gt;</code></pre>
+</li>
+<li><strong>Compressed styles</strong><br>If you want to use a compressed file simply attach that one file, because the style of the remaining files are already included in it. Example:
+<pre class="language-xml"><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+ &lt;head&gt;
+ ...
+ &lt;!--- All styles in one file ---&gt;
+ &lt;link href="/css/styles-default.min.css" media="all" rel="stylesheet" type="text/css" &gt;
+ ...
+ &lt;/head&gt;
+ ...
+&lt;/html&gt;</code></pre>
+</li>
+</ol><hr><!--- Compresing CSS files ---><h4 id="css-compresing-css-files">5.3. Compresing CSS files</h4>
+
+<p>If you have made changes in one of the files and you want then compress them into one, keep the same order as when <a href="#css-including-to-template">adding uncompressed styles to template</a>.</p>
+
+    <hr><!--- JavaScript ---><h3 id="javascript">6. JavaScript</h3>
+
+
+
+    <hr><!--- Structure &amp; files ---><h4 id="javascript-structure-files">6.1. Structure &amp; files</h4>
+
+<p>All files with JavaScript scripts are located in the <samp>/js</samp>. List of all files:</p>
+<ul><li><samp>jquery.validate/localization/messages_*.js</samp> - jQuery validate library translations</li>
+<li><samp>jquery.validate/localization/messages_*.min.js</samp> - Compressed Query validate library translations</li>
+<li><samp>jquery.validate/additional-methods.min.js</samp> - jQuery validate library additional validation methods</li>
+<li><samp>bootstrap.min.js</samp> - Bootstrap library</li>
+<li><samp>jquery-3.3.1.min.js</samp> - jQuery library</li>
+<li><samp>jquery.fitvids.js</samp> - jQuery FitVids library</li>
+<li><samp>jquery.magnific-popup.min.js</samp> - Magnific popup library</li>
+<li><samp>jquery.sticky-kit.min.js</samp> - jQuery Sticky Kit library</li>
+<li><samp>jquery.validate.min.js</samp> - jQuery Validate</li>
+<li><samp>jquery.waypoints.min.js</samp> - jQuery Waypoints library</li>
+<li><samp>leaflet.js</samp> - Lealfet library</li>
+<li><samp>retina.js</samp> - Retina.js library</li>
+<li><samp>scripts.js</samp> - Theme scripts</li>
+<li><samp>scripts.min.js</samp> - All scripts compressed</li>
+<li><samp>slick.min.js</samp> - Slick slider library</li>
+</ul><hr><!--- Including to template ---><h4 id="javascript-including-to-template">6.2. Including to template</h4>
+
+<ol><li><strong>Uncompressed scripts</strong><br>If you want to use in the template uncompressed JavaScript files then file <samp>js/jquery-3.1.1.min.js</samp> should be attached as first and <samp>js/scripts.js</samp> file sholud be last. In addition, the <samp>js/jquery.validate/additional-methods.min.js</samp> and file with jQuery Validate localization messages should be included after <samp>js/jquery.validate.min.js</samp> file. Other files can be included in any order. Example:
+<pre class="language-xml"><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+ &lt;head&gt;
+ ...
+ &lt;/head&gt;
+ &lt;body&gt;
+ ...
+ &lt;!--- js/jquery-3.1.1.min.js must be first ---&gt;
+ &lt;script type="text/javascript" src="/js/jquery-3.1.1.min.js"&gt;&lt;/script&gt;
+ 
+ &lt;!--- other required libraries ---&gt;
+ &lt;script type="text/javascript" src="/js/bootstrap.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="/js/jquery.fitvids.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="/js/jquery.magnific-popup.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="/js/jquery.sticky-kit.min.js"&gt;&lt;/script&gt;
+ &lt;!--- js/jquery.validate.min.js before js/jquery.validate/additional-methods.min.js and localization file ---&gt; 
+ &lt;script type="text/javascript" src="/js/jquery.validate.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="/js/jquery.validate/additional-methods.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="/js/jquery.validate/localization/messages_pl.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="/js/jquery.waypoints.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="/js/slick.min.js"&gt;&lt;/script&gt;
+ &lt;script type="text/javascript" src="/js/retina.js"&gt;&lt;/script&gt;
+ 
+ &lt;!--- scripts.js must be last ---&gt;
+ &lt;script type="text/javascript" src="/js/scripts.js"&gt;&lt;/script&gt;
+ 
+ &lt;/body&gt;
+&lt;/html&gt;​</code></pre>
+</li>
+<li><strong>Compressed scripts</strong><br>If you want to use a compressed file simply attach that one file, because JavaScript scripts of the other files are already included in it. Example: <br><pre class="language-xml"><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+ &lt;head&gt;
+ ...
+ &lt;/head&gt;
+ &lt;body&gt;
+ ...
+ &lt;!--- All scripts in one file ---&gt;
+ &lt;script type="text/javascript" src="/js/scripts.min.js"&gt;&lt;/script&gt;
+ 
+ &lt;/body&gt;
+&lt;/html&gt;​</code></pre>
+</li>
+</ol><hr><!--- Compresing JS files ---><h4 id="javascript-compresing-js-files">6.3. Compresing JS files</h4>
+
+<p>If you have made changes in one of the files and you want then compress them into one, keep the same order as when <a href="#javascript-including-to-template">adding uncompressed JavaScript files to template</a>.</p>
+
+    <hr><!--- PHP ---><h3 id="php">7. PHP</h3>
+
+
+
+    <hr><!--- Structure &amp; files ---><h4 id="php-structure-files">7.1. Structure &amp; files</h4>
+
+<p>The template uses .php files to handle the contact form requests. File list:</p>
+<ul><li><samp>php_libs/PHPMailer/</samp> - PHPMailer library</li>
+<li><samp>php_libs/contact_functions</samp> - File with functions required to prepare and send email from contact form request</li>
+<li><samp>contact-config-example.php</samp> - File with example contact form settings</li>
+<li><samp>contact-config.php</samp> - File with contact form settings</li>
+<li><samp>contact.php</samp> - File handling sending contact forms</li>
+</ul><hr><!--- Configure contact form ---><h4 id="php-configure-contact-form">7.2. Configure contact form</h4>
+
+<p>Contact form settings:</p>
+<div><strong>Required</strong></div>
+<ul><li><samp>host</samp> - SMTP server</li>
+<li><samp>username</samp> - SMTP username</li>
+<li><samp>password</samp> - SMTP password</li>
+</ul><div><strong>Optional, default values </strong></div>
+<ul><li><samp>fromEmail</samp> - Sender e-mail address, if not set the <samp>username</samp> option will be used.</li>
+<li><samp>fromName</samp> - Sender name</li>
+<li><samp>toEmail</samp> - Receiver e-mail address, if not set the <samp>username</samp> option will be used.</li>
+<li><samp>toName</samp> - Receiver name</li>
+<li><samp>subject</samp> - Message subject. You can set here a form field value inserting in it braces ie. <samp>{field_name}</samp>.</li>
+<li><samp>messagePrefix</samp> - Content added before table with form data. You can set here a form field value inserting in it braces <samp>{field_name}</samp>.</li>
+<li><samp>messageSuffix</samp> - Content added after table with form data. You can set here a form field value inserting in it braces <samp>{field_name}</samp>.</li>
+<li><samp>encryption</samp> (Default: tls) - Enable TLS encryption, 'ssl' also accepted.</li>
+<li><samp>port</samp> (Default: 587) - CP port to connect to.</li>
+<li><samp>phpCertificateFix</samp> (Default: false) - For more information about it please see this page: <a href="https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting#php-56-certificate-verification-failure">https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting#php-56-certificate-verification-failure</a>. Enabling this option is highly risky. If you have this problem firstly try to fix your SSL certificate.</li>
+<li><samp>debug</samp> - Enable debug mode with more detailed messages</li>
+<li><samp>confirmationMessage</samp> (Default: "Message was send.") - Message displayed to user when the form was sent successfully.</li>
+<li><samp>errorMessage</samp> (Default: "There was a problem while sendig a message, please try again later or contact with my by phone or skype.") - Message displayed to user when something goes wrong.</li>
+<li><samp>validateMessages</samp> (Default: Array) - Array of validator messages</li>
+<li><samp>validateMessages.required</samp> (Default: "This field is required.") - Message displayed when field is required</li>
+<li><samp>validateMessages.is_email</samp> (Default: "This is not a valid e-mail address.") - Message displayed when field must be a valid e-mail address</li>
+<li><samp>validateMessages.recaptcha</samp> - Message displayed if reCaptcha validation failed</li>
+<li><samp>recaptcha</samp> (Default: Array) - Array of reCaptcha settings</li>
+<li><samp>recaptcha.enabled</samp> (Default: false) - Enable reCaptcha</li>
+<li><samp>recaptcha.site_key</samp> - reCaptcha site key</li>
+<li><samp>recaptcha.secret_key</samp> - reCaptcha secret key</li>
+<li><samp>fields</samp> (Default: Array) - Array of form fields configuration</li>
+<li><samp>fields.example</samp> - Array of "example" field configuration</li>
+<li><samp>fields.example.label</samp> - Label of field replaced in message</li>
+<li><samp>fields.example.required</samp> - Required validation</li>
+<li><samp>fields.example.is_email</samp> - E-mail validation</li>
+</ul><p>The configuration file can be stored as php array or .ini files. Examples:</p>
+<pre class="language-php"><code>return array(
+ // These three options must be set.
+ 'host' =&gt; 'example.com',
+ 'username' =&gt; 'username@example.com',
+ 'password' =&gt; 'password',
+ 
+ // These are optional.
+ 'fromEmail' =&gt; 'username@example.com',
+ 'fromName' =&gt; 'My Website Name', 
+ 'toEmail' =&gt; 'username@example.com',
+ 'toName' =&gt; 'John Smith',
+ 
+ 'subject' =&gt; 'Message from my website',
+ 'messagePrefix' =&gt; '',
+ 'messageSuffix' =&gt; '',
+ 
+ 'encryption' =&gt; 'tls',
+ 'port' =&gt; 587,
+ 'phpCertificateFix' =&gt; false,
+ 
+ 'debug' =&gt; false, // debug mode, with more detailed messages
+
+ 'confirmationMessage' =&gt; 'Message was send.',
+ 'errorMessage' =&gt; 'There was a problem while sendig a message, please try again later or contact with my by phone or skype.',
+ 
+ // Validation messages.
+ 'validateMessages' =&gt; array(
+  'required' =&gt; 'This field is required.',
+  'is_email' =&gt; 'This is not a valid e-mail address',
+  'recaptcha' =&gt; 'reCAPTCHA failed'
+ ),
+
+ // reCAPTCHA settings
+ 'recaptcha' =&gt; array(
+  'enabled' =&gt; false,
+  'site_key' =&gt; '',
+  'secret_key' =&gt; ''
+ ),
+ 
+ // Contact form fields settings
+ 'fields' =&gt; array(
+  // key is vield name
+  'name' =&gt; array(
+   'label' =&gt; 'Name', // Label of field replaced in messege.
+   'required' =&gt; true, // Required validation.
+  ),
+  'email' =&gt; array(
+   'label' =&gt; 'E-mail',
+   'required' =&gt; true,
+   'is_email' =&gt; true // E-mail validation.
+  ),
+  'message' =&gt; array(
+   'label' =&gt; 'Message',
+   'required' =&gt; true
+  )
+ )
+);</code></pre>
+<pre class="language-ini"><code>; These three options must be set.
+host = "example.com"
+username = "username@example.com"
+password = "password"
+
+; These are optional.
+fromEmail = "username@example.com"
+fromName = "My Website Name",
+toEmail = "username@example.com"
+toName = "John Smith"
+
+subject = "Message from my website"
+messagePrefix =&gt; ""
+messageSuffix =&gt; ""
+
+encryption = "tls"
+port = 587
+phpCertificateFix = false
+
+debug = false
+
+confirmationMessage = "Message was send."
+errorMessage = "There was a problem while sendig a message, please try again later or contact with my by phone or skype."
+
+; Validation messages.
+validateMessages[required] = "This field is required."
+validateMessages[is_email] = "This is not a valid e-mail address."
+validateMessages[recaptcha] = "reCAPTCHA failed."
+ 
+; reCAPTCHA settings
+recaptcha[enabled] = false
+recaptcha[site_key] =&gt; ""
+recaptcha[secret_key] =&gt; ""
+
+; Contact form fields settings
+; Label of field replaced in messege.
+fields[name][label] = "Name" 
+; Required validation.
+fields[name][required] = true 
+
+; Label of field replaced in messege.
+fields[email][label] = "E-mail"
+; Required validation. 
+fields[email][required] = true 
+; E-mail validation.
+fields[email][is_email] = true 
+
+fields[message][label] = "Message"
+fields[message][required] = true</code></pre>
+
+    <hr><!--- LESS ---><h3 id="less">8. LESS</h3>
+
+<p>If you do not know what it is LESS before continuing see the information on this page: <a href="http://lesscss.org/">http://lesscss.org/</a>.</p>
+
+    <hr><!--- Structure &amp; files ---><h4 id="less-structure-files">8.1. Structure &amp; files</h4>
+
+<p>All LESS files are placed in the directory /css/less. List of all files:</p>
+<ul><li><samp>css/less/config</samp> - Directory with LESS configuration files</li>
+<li><samp>css/less/config/blue.less</samp> - File with blue color configuration</li>
+<li><samp>css/less/config/blue.less</samp> - Default configuration</li>
+<li><samp>css/less/config/green.less</samp> - File with green color configuration</li>
+<li><samp>css/less/include</samp> - Directory with LESS styles</li>
+<li><samp>css/less/include/blog.less</samp> - Blog styles</li>
+<li><samp>css/less/include/blog-rtl.less</samp> - Blog styles for RTL</li>
+<li><samp>css/less/include/buttons.less</samp> - Buttons styles</li>
+<li><samp>css/less/include/buttons-rtl.less</samp> - Buttons styles for RTL</li>
+<li><samp>css/less/include/clients.less</samp> - Clients styles</li>
+<li><samp>css/less/include/contact.less</samp> - Contact and google map styles</li>
+<li><samp>css/less/include/contact-rtl.less</samp> - Contact and google map styles for RTL</li>
+<li><samp>css/less/include/error404.less</samp> - Error 404 page styles</li>
+<li><samp>css/less/include/error404-rtl.less</samp> - Error 404 page styles for RTL</li>
+<li><samp>css/less/include/forms.less</samp> - Forms styles</li>
+<li><samp>css/less/include/forms-rtl.less</samp> - Forms styles for RTL</li>
+<li><samp>css/less/include/functions.less</samp> - Functions</li>
+<li><samp>css/less/include/gallery.less</samp> - Gallery styles</li>
+<li><samp>css/less/include/popup.less</samp> - Popup styles</li>
+<li><samp>css/less/include/popup-rtl.less</samp> - Popup styles for RTL</li>
+<li><samp>css/less/include/portfolio.less</samp> - Portfolio styles</li>
+<li><samp>css/less/include/portfolio-rtl.less</samp> - Portfolio styles for RTL</li>
+<li><samp>css/less/include/resume.less</samp> - Resume styles</li>
+<li><samp>css/less/include/resume-rtl.less</samp> - Resume styles for RTL</li>
+<li><samp>css/less/include/services.less</samp> - Services styles</li>
+<li><samp>css/less/include/services-rtl.less</samp> - Services styles for RTL</li>
+<li><samp>css/less/include/skills.less</samp> - Skills styles</li>
+<li><samp>css/less/include/styles.less</samp> - Page structure and includes all less files</li>
+<li><samp>css/less/include/testimonials.less</samp> - Testimonial styles</li>
+<li><samp>css/less/include/testimonials-rtl.less</samp> - Testimonial styles for RTL</li>
+<li><samp>css/less/include/welcome-screen.less</samp> - Welcome screen styles</li>
+<li><samp>css/less/styles-blue.less</samp> - Theme styles with blue color version</li>
+<li><samp>css/less/styles-default.less</samp> - Theme styles with default (red) color version</li>
+<li><samp>css/less/styles-green.less</samp> - Theme styles with green color version</li>
+</ul><hr><!--- Edit &amp; compilation ---><h4 id="less-edit-compilation">8.2. Edit &amp; compilation</h4>
+
+<p>If you want to make some changes in the LESS files and re-compile it, you should compile only the files that are located directly in the directory <samp>/css /less</samp>. The files in the directory <samp>css/less/config</samp> and <samp>css/less/includes</samp> should not be compiled directly. If you want to create your own main LESS file, you should load into it configuration file from the <samp>config</samp> directory and <samp>/css/less/styles.less</samp> file. Example:</p>
+<pre class="language-css"><code>// Import default configuration file
+@import "configs/default";
+
+// Import theme strucure and styles
+@import "include/styles";
+
+// Additional styles
+...</code></pre>
+<p>Diagram showing how LESS files are included: <br><img style="display: block; margin-left: auto; margin-right: auto;" src="./assets/images/less-diagram.png" alt="" width="641" height="251"></p>
+
+    <hr><!--- Grunt ---><h3 id="grunt">9. Grunt</h3>
+
+<p>If you do not know what it is Grunt before continuing see the information on this page:<a href="http://gruntjs.com">http://gruntjs.com</a>.</p>
+
+    <hr><!--- Available tasks ---><h4 id="grunt-available-tasks">9.1. Available tasks</h4>
+
+<p>List of available tasks:</p>
+<ul><li><samp>uglify</samp> - combine and minimize JavaScript files</li>
+<li><samp>cssmin</samp> - combine and minimize CSS files</li>
+<li><samp>less</samp> - compile LESS files to CSS</li>
+<li><samp>watch</samp> - observed changes in LESS, CSS and JavaScript files and executes the appropriate task</li>
+</ul><hr><!--- Configuration ---><h4 id="grunt-configuration">9.2. Configuration</h4>
+
+<p>You can configure tasks performed by the Grunt, to do this edit the file <samp>Gruntfile.js</samp>. At the beginning there are variables with simple tasks configuration, eg. a list of compressed CSS and JavaScript files, the name and location of the resulting files.</p>
+
+    <hr><!--- Package content ---><h3 id="package-content">10. Package content</h3>
+
+<p>Content of downloaded package</p>
+<ul><li><samp>Documentation</samp> - Directory with template documentation</li>
+<li><samp>License</samp> - Directory with License</li>
+<li><samp>Aro Template</samp> - Directory with template files
+<ul><li><samp>Aro Template - bootstrap 3</samp> - Directory with template files with bootstrap 3 library</li>
+<li><samp>css</samp> - CSS and LESS files</li>
+<li><samp>fonts</samp> - Fonts files</li>
+<li><samp>images</samp> - Images</li>
+<li><samp>js</samp> - JavaScript files</li>
+<li><samp>php_libs</samp> - PHP libraries</li>
+<li><samp>404.html</samp> - Example of error page</li>
+<li><samp>404-rtl.html</samp> - Example of error page with RTL</li>
+<li><samp>about.html</samp> - Example of about page and default page structure</li>
+<li><samp>about-rtl.html</samp> - Example of about page and default page structure with RTL</li>
+<li><samp>about2.html</samp> - Example of about page and alternative page structure</li>
+<li><samp>about2-rtl.html</samp> - Example of about page and alternative page structure with RTL</li>
+<li><samp>about3.html</samp> - Example of about page and alternative header</li>
+<li><samp>about3-rtl.html</samp> - Example of about page and alternative header with RTL</li>
+<li><samp>about4.html</samp> - Example of about page and statig aside panel</li>
+<li><samp>about4-rtl.html</samp> - Example of about page and statig aside panel with RTL</li>
+<li><samp>blog-entry.html</samp> - Blog post example</li>
+<li><samp>blog-entry-rtl.html</samp> - Blog post example with RTL</li>
+<li><samp>blog-entry2.html</samp> - Blog post example</li>
+<li><samp>blog-entry2-rtl.html</samp> - Blog post example with RTL</li>
+<li><samp>blog-entry3.html</samp> - Blog post example</li>
+<li><samp>blog-entry3-rtl.html</samp> - Blog post example with RTL</li>
+<li><samp>blog-entry4.html</samp> - Blog post example</li>
+<li><samp>blog-entry4-rtl.html</samp> - Blog post example with RTL</li>
+<li><samp>blog.html</samp> - List of blog posts</li>
+<li><samp>blog-rtl.html</samp> - List of blog posts with RTL</li>
+<li><samp>blog2.html</samp> - List of blog posts with images on right</li>
+<li><samp>blog2-rtl.html</samp> - List of blog posts with images on right with RTL</li>
+<li><samp>blog3.html</samp> - List of blog posts - chessboard</li>
+<li><samp>blog3-rtl.html</samp> - List of blog posts - chessboard with RTL</li>
+<li><samp>clients.html</samp> - Clients example</li>
+<li><samp>clients-rtl.html</samp> - Clients example with RTL</li>
+<li><samp>contact-config-example.php</samp> - File with example contact form settings</li>
+<li><samp>contact-config.php</samp> - File with contact form settings</li>
+<li><samp>contact.html</samp> - Example of contact page and form</li>
+<li><samp>contact-rtl.html</samp> - Example of contact page and form with RTL</li>
+<li><samp>contact.php</samp> - File handling sending contact forms</li>
+<li><samp>contact2.html</samp> - Example of contact page and alternative look of form</li>
+<li><samp>contact2-rtl.html</samp> - Example of contact page and alternative look of form with RTL</li>
+<li><samp>contact3.html</samp> - Example of contact page and alternative look of form and icons in contact informations</li>
+<li><samp>contact3-rtl.html</samp> - Example of contact page and alternative look of form and icons in contact informations with RTL</li>
+<li><samp>forms.html</samp> - Default form example</li>
+<li><samp>forms-rtl.html</samp> - Default form example with RTL</li>
+<li><samp>forms2.html</samp> - Alternative form look example</li>
+<li><samp>forms2-rtl.html</samp> - Alternative form look example with RTL</li>
+<li><samp>gallery.html</samp> - Example of gallery</li>
+<li><samp>gallery-rtl.html</samp> - Example of gallery with RTL</li>
+<li><samp>Gruntfile.js</samp> - GruntJs file</li>
+<li><samp>index.html</samp> - Example of welcome screen page</li>
+<li><samp>index-rtl.html</samp> - Example of welcome screen page with RTL</li>
+<li><samp>index2.html</samp> - Example of welcome screen page</li>
+<li><samp>index2-rtl.html</samp> - Example of welcome screen page with RTL</li>
+<li><samp>index3.html</samp> - Example of welcome screen page</li>
+<li><samp>index3-rtl.html</samp> - Example of welcome screen page with RTL</li>
+<li><samp>onepage.html</samp> - Example of onepage page</li>
+<li><samp>onepage-rtl.html</samp> - Example of onepage page with RTL</li>
+<li><samp>onepage2.html</samp> - Example of onepage page</li>
+<li><samp>onepage2-rtl.html</samp> - Example of onepage page with RTL</li>
+<li><samp>package.json</samp> - NPM configuration file</li>
+<li><samp>portfolio.html</samp> - Example of portfolio page</li>
+<li><samp>portfolio-rtl.html</samp> - Example of portfolio page with RTL</li>
+<li><samp>resume.html</samp> - Example of resume page</li>
+<li><samp>resume-rtl.html</samp> - Example of resume page with RTL</li>
+<li><samp>resume2.html</samp> - Example of resume page</li>
+<li><samp>resume2-rtl.html</samp> - Example of resume page with RTL</li>
+<li><samp>resume3.html</samp> - Example of resume page</li>
+<li><samp>resume3-rtl.html</samp> - Example of resume page with RTL</li>
+<li><samp>resume4.html</samp> - Example of resume page</li>
+<li><samp>resume4-rtl.html</samp> - Example of resume page with RTL</li>
+<li><samp>services.html</samp> - Services example</li>
+<li><samp>services-rtl.html</samp> - Services example with RTL</li>
+<li><samp>skills.html</samp> - Skills example</li>
+<li><samp>skills-rtl.html</samp> - Skills example with RTL</li>
+<li><samp>testimonials.html</samp> - Testomials example</li>
+<li><samp>testimonials-rtl.html</samp> - Testomials example with RTL</li>
+</ul></li>
+</ul><hr><!--- Used libraries ---><h3 id="used-libraries">11. Used libraries</h3>
+
+<p>List of used libraries (in alphabetical order):</p>
+<ul><li>
+<h4>Bootstrap CSS <small>(Version: 4.1.3)</small></h4>
+<div>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.</div>
+<dl><dt>License:</dt>
+<dd>MIT license <small>(link: <a href="https://github.com/necolas/normalize.css/blob/master/LICENSE">https://github.com/necolas/normalize.css/blob/master/LICENSE</a>)</small></dd>
+<dt>Website</dt>
+<dd><a href="http://getbootstrap.com">http://getbootstrap.com</a></dd>
+</dl></li>
+<li>
+<h4>FitVids.JS <small>(Version: 1.1)</small></h4>
+<div>A lightweight, easy-to-use jQuery plugin for fluid width video embeds</div>
+<dl><dt>License:</dt>
+<dd>WTFPL license <small>(link: <a href="http://sam.zoy.org/wtfpl/">http://sam.zoy.org/wtfpl/</a>)</small></dd>
+<dt>Website</dt>
+<dd><a href="http://fitvidsjs.com">http://fitvidsjs.com</a></dd>
+</dl></li>
+<li>
+<h4>Font Awesome <small>(Version: 4.7.0)</small></h4>
+<div>The iconic font and CSS toolkit</div>
+<dl><dt>License:</dt>
+<dd>SIL OFL 1.1 license, MIT license and CC BY 3.0 license <small>(link: <a href="http://fontawesome.io/license/">http://fontawesome.io/license/</a>)</small></dd>
+<dt>Website</dt>
+<dd><a href="http://fontawesome.io">http://fontawesome.io</a></dd>
+</dl></li>
+<li>
+<h4>Highlight.js <small>(Version: 9.9.0)</small></h4>
+<div>Highlight.js is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It works with pretty much any markup, doesn’t depend on any framework and has automatic language detection.<br><strong>Used only in documentation.</strong></div>
+<dl><dt>License:</dt>
+<dd>BSD License <small>(link: <a href="https://github.com/isagalaev/highlight.js/blob/master/LICENSE">https://github.com/isagalaev/highlight.js/blob/master/LICENSE</a>)</small></dd>
+<dt>Website</dt>
+<dd><a href="https://highlightjs.org/">https://highlightjs.org/</a></dd>
+</dl></li>
+<li>
+<h4>jQuery <small>(Version: 3.3.1)</small></h4>
+<div>JavaScript framework</div>
+<dl><dt>License:</dt>
+<dd>MIT license <small>(link: <a href="https://jquery.org/license/">https://jquery.org/license/</a>)</small></dd>
+<dt>Website</dt>
+<dd><a href="http://jquery.com">http://jquery.com</a></dd>
+</dl></li>
+<li>
+<h4>jQuery Validate <small>(Version: 1.17.0)</small></h4>
+<div>Form validation with jQuery</div>
+<dl><dt>License:</dt>
+<dd>MIT license <small>(link: <a href="https://github.com/jquery-validation/jquery-validation/blob/master/LICENSE.md">https://github.com/jquery-validation/jquery-validation/blob/master/LICENSE.md</a>)</small></dd>
+<dt>Website</dt>
+<dd><a href="https://jqueryvalidation.org/">https://jqueryvalidation.org/</a></dd>
+</dl></li>
+<li>
+<h4>Magnific Popup <small>(Version: 1.1.0)</small></h4>
+<div>Magnific Popup is a responsive lightbox &amp; dialog script with focus on performance and providing best experience for user with any device</div>
+<dl><dt>License:</dt>
+<dd>MIT license <small>(link: <a href="https://github.com/dimsemenov/Magnific-Popup/blob/master/LICENSE">https://github.com/dimsemenov/Magnific-Popup/blob/master/LICENSE</a>)</small></dd>
+<dt>Website</dt>
+<dd><a href="http://dimsemenov.com/plugins/magnific-popup">http://dimsemenov.com/plugins/magnific-popup</a></dd>
+</dl></li>
+<li>
+<h4>Normalize CSS <small>(Version: 8.0.0)</small></h4>
+<div>A modern, HTML5-ready alternative to CSS resets</div>
+<dl><dt>License:</dt>
+<dd>MIT license <small>(link: <a href="https://github.com/twbs/bootstrap/blob/master/LICENSE">https://github.com/twbs/bootstrap/blob/master/LICENSE</a>)</small></dd>
+<dt>Website</dt>
+<dd><a href="https://necolas.github.io/normalize.css">https://necolas.github.io/normalize.css</a></dd>
+</dl></li>
+<li>
+<h4>Retina.js <small>(Version: 2.1.1)</small></h4>
+<div>retina.js is an open source script that makes it easy to serve high-resolution images to devices with retina displays</div>
+<dl><dt>License:</dt>
+<dd>MIT License <small>(link: <a href="https://github.com/jgnewman/retinajs/blob/master/LICENSE">https://github.com/jgnewman/retinajs/blob/master/LICENSE</a>)</small></dd>
+<dt>Website</dt>
+<dd><a href="http://imulus.github.io/retinajs/">http://imulus.github.io/retinajs/</a></dd>
+</dl></li>
+<li>
+<h4>Slick <small>(Version: 1.8.1)</small></h4>
+<div>The last carousel you'll ever need</div>
+<dl><dt>License:</dt>
+<dd>MIT license <small>(link: <a href="https://github.com/kenwheeler/slick/blob/master/LICENSE">https://github.com/kenwheeler/slick/blob/master/LICENSE</a>)</small></dd>
+<dt>Website</dt>
+<dd><a href="http://kenwheeler.github.io/slick">http://kenwheeler.github.io/slick</a></dd>
+</dl></li>
+<li>
+<h4>Socicon <small>(Version: 3.6.2)</small></h4>
+<div>Free social icons font</div>
+<dl><dt>License:</dt>
+<dd>SIL OFL 1.1 license <small>(link: <a href="http://www.socicon.com/about.php">http://www.socicon.com/about.php</a>)</small></dd>
+<dt>Website</dt>
+<dd><a href="http://www.socicon.com/">http://www.socicon.com/</a></dd>
+</dl></li>
+<li>
+<h4>Sticky-Kit <small>(Version: 1.1.2)</small></h4>
+<div>A jQuery plugin for making smart sticky elements</div>
+<dl><dt>License:</dt>
+<dd>MIT license <small>(link: <a href="http://leafo.net/sticky-kit">http://leafo.net/sticky-kit</a>)</small></dd>
+<dt>Website</dt>
+<dd><a href="http://leafo.net/sticky-kit">http://leafo.net/sticky-kit</a></dd>
+</dl></li>
+<li>
+<h4>Waypoints <small>(Version: 4.0.1)</small></h4>
+<div>Waypoints is the easiest way to trigger a function when you scroll to an element</div>
+<dl><dt>License:</dt>
+<dd>MIT license <small>(link: <a href="https://github.com/imakewebthings/waypoints/blob/master/licenses.txt">https://github.com/imakewebthings/waypoints/blob/master/licenses.txt</a>)</small></dd>
+<dt>Website</dt>
+<dd><a href="http://imakewebthings.com/waypoints/">http://imakewebthings.com/waypoints/</a></dd>
+</dl></li>
+</ul><hr><!--- Used images ---><h3 id="used-images">12. Used images</h3>
+
+<p>List of images used in demo:</p>
+<ul><li><strong>Link</strong>: <a href="https://photodune.net/item/young-adults/2360847">https://photodune.net/item/young-adults/2360847</a><br><strong>Author</strong>: Ollyi (link: <a href="https://photodune.net/user/ollyi">https://photodune.net/user/ollyi</a>)<br></li>
+<li><strong>Link</strong>: <a href="https://photodune.net/item/business-man/435170">https://photodune.net/item/business-man/435170</a><br><strong>Author</strong>: andresrphotos (link: <a href="https://photodune.net/user/andresrphotos">https://photodune.net/user/andresrphotos</a>)<br></li>
+<li><strong>Link</strong>: <a href="https://pixabay.com/pl/ipad-mac-apple-mobilnych-tabletka-606766/">https://pixabay.com/pl/ipad-mac-apple-mobilnych-tabletka-606766/</a><br><strong>Author</strong>: FirmBee (link: <a href="https://pixabay.com/pl/users/FirmBee-663163/">https://pixabay.com/pl/users/FirmBee-663163/</a>)<br></li>
+<li><strong>Link</strong>: <a href="https://pixabay.com/pl/urz%C4%85d-kwiaty-apple-komputer-605503/">https://pixabay.com/pl/urz%C4%85d-kwiaty-apple-komputer-605503/</a><br><strong>Author</strong>: FirmBee (link: <a href="https://pixabay.com/pl/users/FirmBee-663163/">https://pixabay.com/pl/users/FirmBee-663163/</a>)<br></li>
+<li><strong>Link</strong>: <a href="https://pixabay.com/pl/imac-apple-makieta-app-ipad-mysz-606765/">https://pixabay.com/pl/imac-apple-makieta-app-ipad-mysz-606765/</a><br><strong>Author</strong>: FirmBee (link: <a href="https://pixabay.com/pl/users/FirmBee-663163/">https://pixabay.com/pl/users/FirmBee-663163/</a>)<br></li>
+<li><strong>Link</strong>: <a href="https://pixabay.com/pl/apple-ipad-tabletka-internet-551502/">https://pixabay.com/pl/apple-ipad-tabletka-internet-551502/</a><br><strong>Author</strong>: stevepb (link: <a href="https://pixabay.com/pl/users/stevepb-282134/">https://pixabay.com/pl/users/stevepb-282134/</a>)<br></li>
+<li><strong>Link</strong>: <a href="https://pixabay.com/pl/streszczenie-amator-przes%C5%82ona-cia%C5%82a-1239387/">https://pixabay.com/pl/streszczenie-amator-przes%C5%82ona-cia%C5%82a-1239387/</a><br><strong>Author</strong>: Meditations (link: <a href="https://pixabay.com/pl/users/Meditations-2077322/">https://pixabay.com/pl/users/Meditations-2077322/</a>)<br></li>
+<li><strong>Link</strong>: <a href="https://pixabay.com/pl/telefon-ekran-technologia-mobilnych-1052023/">https://pixabay.com/pl/telefon-ekran-technologia-mobilnych-1052023/</a><br><strong>Author</strong>: DariuszSankowski (link: <a href="https://pixabay.com/pl/users/DariuszSankowski-1441456/">https://pixabay.com/pl/users/DariuszSankowski-1441456/</a>)<br></li>
+<li><strong>Link</strong>: <a href="https://pixabay.com/pl/obliczeniowa-biuro-st%C3%B3%C5%82-klawiatura-2048165/">https://pixabay.com/pl/obliczeniowa-biuro-st%C3%B3%C5%82-klawiatura-2048165/</a><br><strong>Author</strong>: Goumbik (link: <a href="https://pixabay.com/pl/users/Goumbik-3752482/">https://pixabay.com/pl/users/Goumbik-3752482/</a>)<br></li>
+<li><strong>Link</strong>: <a href="https://pixabay.com/pl/html-css-czu%C5%82y-1832991/">https://pixabay.com/pl/html-css-czu%C5%82y-1832991/</a><br><strong>Author</strong>: Boskampi (link: <a href="https://pixabay.com/pl/users/Boskampi-3788146/">https://pixabay.com/pl/users/Boskampi-3788146/</a>)<br></li>
+<li><strong>Link</strong>: <a href="https://pixabay.com/pl/kodowanie-programowanie-praca-924920/">https://pixabay.com/pl/kodowanie-programowanie-praca-924920/</a><br><strong>Author</strong>: StockSnap (link: <a href="https://pixabay.com/pl/users/StockSnap-894430/">https://pixabay.com/pl/users/StockSnap-894430/</a>)</li>
+</ul><hr><!--- Usefull links ---><h3 id="usefull-links">13. Usefull links</h3>
+
+<ul><li>Theme demo page: <a href="http://themes.aroch.pl/?t=aro">http://themes.aroch.pl/?t=aro</a></li>
+<li>My page on themeforest: <a href="https://themeforest.net/user/aroch">https://themeforest.net/user/aroch</a></li>
+</ul></div>
+    </div>
+    <hr><p>Once again, thank you so much for purchasing this theme. As I said at the beginning, I'd be glad to help you if you have any questions relating to this theme. No guarantees, but I'll do my best to assist. If you have a more general question relating to the themes on ThemeForest, you might consider visiting the forums and asking your question in the "Item Discussion" section.</p>
+
+    <p class="append-bottom alt large text-right"><strong>Arkadiusz Roch</strong></p>
+    <hr class="space"></div>
+</body></html>

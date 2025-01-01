@@ -1,0 +1,48 @@
+.form{
+  label{
+    .custom-select{
+      &:after{
+        left: 15px;
+        right: auto;
+      }
+    }
+  }
+  .checkbox,
+  .radio{
+    input[type=checkbox],
+    input[type=radio]{
+      + label{
+        padding-left: 0;
+        padding-right: 30px;
+        &:before{
+          left: auto;
+          right: 0;
+        }
+      }
+    }
+  }
+  .checkbox{
+    input[type=checkbox]{
+      &:checked{
+        +label{
+          &:after{
+            left: auto;
+            right: 2px;
+          }
+        }
+      }
+    }
+  }
+  .radio{
+    input[type=radio]{
+      &:checked{
+        +label{
+          &:after{
+            left: 0;
+            right: 6px;
+          }
+        }
+      }
+    }
+  }
+}

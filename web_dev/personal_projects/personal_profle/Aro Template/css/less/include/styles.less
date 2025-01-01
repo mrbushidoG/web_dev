@@ -1,0 +1,925 @@
+@import "functions";
+/*
+* Table of contents
+* 1. General styles
+* 1.1. Slider dots styles
+* 1.2. Typography
+* 1.3. Structure
+* 2. Page container
+* 2.1. Aside container
+* 2.2. Aside header
+* 2.3. Aside photo
+* 2.4. Navigation
+* 2.5. Navigation social icons
+* 2.6. Aside social icons
+* 2.7. Aside footer
+* 3. Content container
+* 3.1. Content header
+* 3.2. Content
+* 3.3. Content headings
+* 3.4. Content styles
+* 3.5. Pagination
+* 4. Content types
+* 4.1. Blog
+* 4.2. Clients
+* 4.3. Contact
+* 4.4. Error 404
+* 4.5. Gallery
+* 4.6. Portfolio
+* 4.7. Resume
+* 4.8. Services
+* 4.9. Skills
+* 4.10. Testimonials
+* 5. Welcome screen
+* 6. Popup
+* 7. Page footer
+* 8. RTL
+* 9. Page responsive
+*/
+
+/*
+* 1. General styles and helper classes
+*/
+* {
+  outline: none;
+}
+
+a:focus,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+a {
+  color: @anchor-color;
+  transition: color .1s linear;
+  &:hover {
+    color: @anchor-hover-color;
+  }
+}
+
+.list-unstyled{
+  padding: 0;
+  margin: 0;
+  li{
+    padding: 5px 0;
+  }
+}
+
+.alert{
+  .border-radius(@border-radius);
+}
+
+.marginB30{
+  margin-bottom: 30px;
+}
+.marginB50{
+  margin-bottom: 50px;
+}
+.marginT30{
+  margin-top: 30px;
+}
+.marginT50{
+  margin-top: 50px;
+}
+
+@import "buttons";
+@import "forms";
+
+/*
+* 1.1. Slider dots styles
+*/
+.slick-dots {
+  li {
+    height: 11px;
+    width: 11px;
+    button {
+      background: @color-light-gray2;
+      .border-radius(@border-radius);
+      height: 100%;
+      padding: 0;
+      .transition(background 0.15s linear);
+      width: 100%;
+      &:before {
+        display: none;
+      }
+    }
+    &.slick-active {
+      button {
+        background: @color-light-gray3;
+      }
+    }
+  }
+}
+
+/*
+* 1.2. Typography
+*/
+h1, h2, h3, h4, h5, h6 {
+  font-family: @heading-font;
+  font-weight: bold;
+  margin: 0 0 10px;
+}
+
+/*
+* 1.3. Structure
+*/
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: @body-background;
+  font-family: @content-font;
+  font-size: 16px;
+  height: 100%;
+  margin: 0 auto;
+  min-height: 100%;
+  min-width: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+/*
+* 2. Page container
+*/
+.page-wrapper {
+  &.full-height-content {
+    .container {
+      background: @color-white;
+    }
+  }
+  > .container {
+    display: flex;
+    > .row {
+      width: inherit;
+    }
+  }
+
+  /*
+  * 2.1. Aside container
+  */
+  .aside-wrapper {
+    background: @color-light-gray;
+    min-height: 100%;
+    padding: 0;
+    aside {
+      text-align: center;
+      top: 0;
+      .aside-container {
+        /*
+        * 2.2. Aside header
+        */
+        header {
+          background: @secondary-color;
+          color: @nav-font-color;
+          padding: 24px 0 0;
+          .name {
+            font-size: 40px;
+            font-weight: normal;
+            font-family: @content-font;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+          }
+          .description {
+            letter-spacing: 1.4px;
+            font-family: @content-font;
+            font-size: 20px;
+            font-weight: normal;
+            margin-bottom: 0;
+          }
+        }
+        /*
+        * 2.3. Aside photo
+        */
+        .photo {
+          background: @secondary-color;
+          display: table-cell;
+          height: 250px;
+          text-align: center;
+          vertical-align: middle;
+          width: 100%;
+          img {
+            .border-radius(@border-radius);
+            max-width: 75%;
+          }
+          &.full-width{
+            img{
+              .border-radius(0);
+              max-width: 100%;
+            }
+          }
+        }
+        /*
+        * 2.4. Navigation
+        */
+        nav {
+          background: @primary-color;
+          .border-radius(0 0 @border-radius @border-radius);
+          margin-bottom: 20px;
+          .navbar-toggler{
+            .icon-bar{
+              display: none;
+            }
+          }
+          ul {
+            list-style: none;
+            margin: 0 25px;
+            padding: 0;
+            text-align: center;
+            li {
+              border-bottom: 1px solid @nav-separator-color;
+              a {
+                color: @nav-anchor-color;
+                display: inline-block;
+                font-size: 18px;
+                letter-spacing: 1.8px;
+                padding: 18px 0;
+                text-transform: uppercase;
+                transition: color 0.15s linear;
+                width: 100%;
+                &:hover {
+                  color: @nav-anchor-hover-color;
+                }
+                &.active {
+                  color: @nav-anchor-hover-color;
+                }
+              }
+              &:last-child {
+                border-bottom: none;
+              }
+            }
+          }
+          /*
+          * 2.5. Navigation social icons
+          */
+          .socials {
+            margin: 9px 30px 15px;
+            max-width: 100%;
+            a {
+              color: @nav-anchor-color;
+              &:hover {
+                color: @nav-anchor-hover-color;
+              }
+            }
+          }
+        }
+      }
+      /*
+      * 2.6. Aside social icons
+      */
+      .socials {
+        display: inline-block;
+        font-size: 16px;
+        line-height: 32px;
+        margin: 0 auto 6px;
+        text-align: center;
+        a {
+          color: @aside-social-color;
+          float: left;
+          padding: 0 10px;
+          transition: color 0.15s linear;
+          &:hover {
+            color: @aside-social-hover-color;
+          }
+        }
+      }
+      /*
+      * 2.7. Aside footer
+      */
+      footer {
+        margin: 0;
+        padding: 0 15px 20px;
+        text-align: center;
+      }
+    }
+  }
+  /*
+  * 3. Content container
+  */
+  .content-wrapper {
+    padding: 0;
+    /*
+    * 3.1. Content header
+    */
+    header {
+      background: @color-light-gray;
+      height: 250px;
+      max-height: 250px;
+      .header-wrapper {
+        color: @heading-color;
+        display: table-cell;
+        height: 250px;
+        padding: 0 40px;
+        vertical-align: middle;
+      }
+      .name {
+        font-family: @content-font;
+        font-size: 70px;
+        font-weight: normal;
+        letter-spacing: 4.1px;
+        margin-bottom: 18px;
+      }
+      .description {
+        font-family: @content-font;
+        font-size: 24px;
+        font-weight: normal;
+        letter-spacing: 1.4px;
+      }
+    }
+    /*
+    * 3.2. Content
+    */
+    .content {
+      background: @content-background;
+      .border-radius(0 @border-radius 0 0);
+      color: @content-color;
+      padding: 30px 0 0;
+      &:first-child{
+        padding-top: 25px;
+      }
+      &.without-background {
+        background: transparent;
+        padding-top: 8px;
+      }
+      * {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+      }
+      /*
+      * 3.3. Content headings
+      */
+      h1, h2, h3, h4, h5, h6 {
+        color: @heading-color;
+        font-family: @heading-font;
+        font-size: 36px;
+        font-weight: 600;
+        letter-spacing: -0.2px;
+        line-height: 1.2;
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+        position: relative;
+        text-transform: uppercase;
+        &:after {
+          background: @primary-color;
+          bottom: 0;
+          content: "";
+          display: block;
+          height: 2px;
+          left: 0;
+          position: absolute;
+          width: 90px;
+        }
+      }
+      h3, h4, h5, h6 {
+        margin-bottom: 35px;
+        margin-top: 30px;
+      }
+      h3 {
+        font-size: 30px;
+      }
+      h4 {
+        font-size: 24px;
+      }
+      h5 {
+        font-size: 20px;
+      }
+      h6 {
+        font-size: 16px;
+      }
+      /*
+      * 3.4. Content styles
+      */
+      section {
+        color: @color-gray2;
+        font-size: 16px;
+        letter-spacing: 0.3px;
+        line-height: 1.75;
+        padding: 0 40px 25px;
+        text-align: left;
+        &.no-padding {
+          padding: 0;
+          .full-width{
+            margin: 0;
+          }
+          .full-width-image{
+            margin: 0;
+            &:first-child{
+              margin-left: 0;
+              margin-right: 0;
+            }
+          }
+        }
+        .full-width {
+          margin: 0 -40px;
+        }
+        .full-width-image {
+          margin: 0 -40px;
+          &:first-child {
+            margin: -30px -40px 0;
+          }
+          + h1, + h2, + h3, + h4, + h5, + h6 {
+            margin-top: 30px;
+          }
+        }
+      }
+      ul, ol{
+        li{
+          .icon{
+            display: inline-block;
+            width: 20px;
+          }
+        }
+      }
+      img {
+        max-width: 100%;
+        + h1, + h2, + h3, + h4, + h5, + h6 {
+          margin-top: 30px;
+        }
+      }
+      .fluid-width-video-wrapper {
+        margin-bottom: 20px;
+      }
+      p {
+        + .fluid-width-video-wrapper {
+          margin-top: 20px;
+        }
+      }
+      .fa{
+        color: @color-black;
+        display: inline;
+        text-align: center;
+        width: 30px;
+      }
+      .lead{
+        font-weight: 500;
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+
+      /*
+      * 3.5. Pagination
+      */
+      .pagination-wrapper {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      .pagination {
+        margin: 30px auto 10px;
+        text-align: center;
+        padding: 0;
+        .border-radius(4px);
+        li {
+          a {
+            background-color: #fff;
+            border: 1px solid @color-black;
+            color: @anchor-color;
+            float: left;
+            line-height: 1.42857143;
+            margin-left: -1px;
+            padding: 7px 12px 6px;
+            position: relative;
+            text-decoration: none;
+            &.current,
+            &:hover,
+            &:focus {
+              background: inherit;
+              border-color: @color-black;
+              color: @anchor-hover-color;
+            }
+            &.current{
+              font-weight: bold;
+            }
+            .icon{
+              width: auto;
+              color: inherit;
+            }
+          }
+          &:first-child {
+            a {
+              .border-radius(@border-radius 0 0 @border-radius);
+            }
+          }
+          &:last-child {
+            a {
+              .border-radius(0 @border-radius @border-radius 0);
+            }
+          }
+        }
+      }
+    }
+
+    /*
+    * 4. Content types
+    */
+    @import "blog";
+    @import "clients";
+    @import "contact";
+    @import "error404";
+    @import "gallery";
+    @import "portfolio";
+    @import "resume";
+    @import "services";
+    @import "skills";
+    @import "testimonials";
+  }
+}
+
+/*
+* 5. Welcome screen
+*/
+@import "welcome-screen";
+/*
+* 6. Popup
+*/
+@import "popup";
+
+/*
+* 7.Page footer
+*/
+footer {
+  margin: 20px 0;
+  text-align: right;
+  .copyrights {
+    color: @content-color;
+    a {
+      color: @anchor-color;
+      &:hover {
+        color: @anchor-hover-color;
+      }
+    }
+  }
+}
+
+.rtl{
+  @import "buttons-rtl";
+  @import "forms-rtl";
+
+  .page-wrapper {
+    .aside-wrapper {
+      float: right;
+      aside {
+        .socials {
+          a {
+            float: right;
+          }
+        }
+      }
+    }
+    /*
+    * 3. Content container
+    */
+    .content-wrapper {
+      float:left;
+      /*
+      * 3.2. Content
+      */
+      .content {
+        h1, h2, h3, h4, h5, h6 {
+          &:after {
+            left: auto;
+            right: 0;
+          }
+        }
+        section {
+          text-align: right;
+        }
+      }
+      @import "blog-rtl";
+      @import "contact-rtl";
+      @import "error404-rtl";
+      @import "portfolio-rtl";
+      @import "resume-rtl";
+      @import "services-rtl";
+      @import "testimonials-rtl";
+    }
+  }
+  @import "popup-rtl";
+
+  footer{
+    text-align: left;
+  }
+}
+
+
+/*
+* 9. Page responsive
+*/
+@media all and (min-width: 1200px) {
+  .page-wrapper{
+    .aside-wrapper{
+      aside{
+        .aside-container{
+          .photo{
+            &.full-width{
+              img{
+                height: 250px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media all and (max-width: 1199px) {
+  .page-wrapper {
+    .aside-wrapper {
+      aside {
+        .aside-container {
+          .photo{
+            height: 198px;
+          }
+        }
+      }
+    }
+    .content-wrapper {
+      header {
+        height: 198px;
+        .header-wrapper{
+          height: 198px
+        }
+      }
+    }
+  }
+}
+@media all and (max-width: 991px) {
+  .page-wrapper {
+    .aside-wrapper {
+      aside {
+        .aside-container {
+          .photo{
+            height: 196px;
+          }
+          nav{
+            ul{
+              margin: 0 15px;
+            }
+          }
+        }
+      }
+    }
+    .content-wrapper {
+      header {
+        height: 196px;
+        .header-wrapper{
+          height: 196px;
+          padding: 0 25px;
+        }
+      }
+      .content{
+        section{
+          padding-left: 25px;
+          padding-right: 25px;
+          .full-width{
+            margin: 0 -25px;
+          }
+          .full-width-image{
+            margin: 0 -25px;
+            &:first-child{
+              margin-left: -25px;
+              margin-right: -25px;
+            }
+          }
+          &.no-padding{
+            .full-width{
+              margin: 0;
+            }
+            .full-width-image{
+              margin: 0;
+              &:first-child{
+                margin-left: 0;
+                margin-right: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media all and (max-width: 767px) {
+  body {
+    .page-wrapper {
+      > .container {
+        display: block;
+        > .row {
+          width: auto;
+        }
+      }
+      .aside-wrapper {
+        min-height: 0;
+        overflow: hidden;
+        aside {
+          .aside-container {
+            > header{
+              &:first-child{
+                padding-top: 20px;
+              }
+              .name{
+                margin-bottom: 0;
+              }
+              .description{
+                padding-top: 20px;
+              }
+            }
+            header{
+              padding: 0 15px;
+              .description{
+                padding-bottom: 20px;
+              }
+            }
+            .photo {
+              display: block;
+              height: auto;
+              margin-top: 0;
+              width: 100%;
+              &.full-width{
+                img{
+                  .border-radius(@border-radius);
+                }
+              }
+              img{
+                &:last-child{
+                  margin-bottom: 30px;
+                }
+              }
+              .name {
+                color: @color-white;
+                font-family: @content-font;
+                font-size: 40px;
+                font-weight: normal;
+                letter-spacing: 2px;
+                margin: 0 auto;
+                padding: 25px 0 28px;
+              }
+              .description {
+                color: @color-white;
+                font-family: @content-font;
+                font-size: 20px;
+                font-weight: normal;
+                letter-spacing: 1.4px;
+                padding: 25px 0;
+              }
+            }
+            nav {
+              margin-bottom: 0;
+              .navbar-toggler {
+                padding: 12px 9px;
+                .icon-bar {
+                  background: @color-white;
+                  display: block;
+                  width: 22px;
+                  height: 2px;
+                  .border-radius(1px);
+                  + .icon-bar{
+                    margin-top: 4px;
+                  }
+                }
+              }
+              .navbar-collapse {
+                border-top: 1px solid @color-black-10;
+                box-shadow: none;
+              }
+              ul{
+                margin: 0 -15px;
+                a{
+                  padding-left: 30px;
+                  padding-right: 30px;
+                }
+              }
+              .socials{
+                margin-top: 9px;
+              }
+            }
+          }
+          .socials{
+            margin-top: 15px;
+          }
+          footer {
+            padding-bottom: 0;
+          }
+        }
+      }
+      .content-wrapper {
+        header {
+          .name {
+            font-size: 50px;
+          }
+        }
+        .content {
+          h1{
+            font-size: 30px;
+          }
+          h2 {
+            font-size: 30px;
+          }
+          h3 {
+            font-size: 26px;
+          }
+          h4 {
+            font-size: 22px;
+          }
+          h5 {
+            font-size: 18px;
+          }
+          h6 {
+            font-size: 16px;
+          }
+          section {
+            padding-bottom: 30px;
+            padding-left: 30px;
+            padding-right: 30px;
+            .full-width {
+              margin: 0 -30px 0;
+            }
+            .full-width-image {
+              margin: 0 -30px 0;
+              &:first-child {
+                margin: -38px -30px 0;
+              }
+            }
+            &.no-padding{
+              .full-width{
+                margin: 0;
+              }
+              .full-width-image{
+                margin: 0;
+                &:first-child{
+                  margin-left: 0;
+                  margin-right: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    > footer {
+      border-top: 1px solid @color-light-gray2;
+      font-size: 14px;
+      padding: 25px 15px;
+      margin: 0;
+    }
+  }
+}
+
+@media all and (max-width: 479px) {
+  body{
+    .page-wrapper{
+      .aside-wrapper {
+        aside {
+          .aside-container {
+            nav {
+              ul {
+                a{
+                  padding-left: 15px;
+                  padding-right: 15px;
+                }
+              }
+            }
+            .socials{
+              margin-left: 15px;
+              margin-right: 15px;
+            }
+          }
+        }
+      }
+      .content-wrapper{
+        .content{
+          section {
+            padding-left: 15px;
+            padding-right: 15px;
+            .full-width {
+              margin: 0 -15px 0;
+            }
+            .full-width-image {
+              margin: 0 -15px 0;
+              &:first-child {
+                margin: -38px -15px 0;
+              }
+            }
+            &.no-padding{
+              .full-width{
+                margin: 0;
+              }
+              .full-width-image{
+                margin: 0;
+                &:first-child{
+                  margin-left: 0;
+                  margin-right: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    > footer {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

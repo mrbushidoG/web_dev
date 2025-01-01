@@ -1,0 +1,110 @@
+.resume{
+  ul{
+    li{
+      padding-left: 0;
+      padding-right: 80px;
+      .icon{
+        right: 0;
+      }
+    }
+  }
+  &.resume-timeline{
+    ul{
+      li{
+        margin-left: 0;
+        margin-right: 25px;
+        padding-left: 0;
+        padding-right: 50px;
+        &:before{
+          left: auto;
+          right: -10px;
+        }
+      }
+      &.education-list{
+        li{
+          border-left: none;
+          border-right: 5px solid @resume-education-color;
+        }
+      }
+      &.career-list{
+        li{
+          border-left: none;
+          border-right: 5px solid @resume-career-color;
+        }
+      }
+    }
+  }
+}
+
+/*
+* Resume responsive
+*/
+@media all and (max-width: 991px){
+  .resume-download-button{
+    .button{
+      padding-left: 15px;
+      padding-right: 15px;
+      .icon{
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 991px){
+  .resume-download-button{
+    .button{
+      padding-left: 15px;
+      padding-right: 15px;
+      .icon{
+        margin-left: 15px;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 500px){
+  .resume {
+    &.resume-timeline{
+      ul{
+        li{
+          margin-left: 0;
+          margin-right: 17px;
+          padding-left: 0;
+          padding-right: 30px;
+        }
+      }
+      .resume-item-subtitle{
+        margin-right: 0;
+      }
+      p{
+        margin-right: 0;
+      }
+    }
+    ul{
+      li{
+        padding-left: 0;
+        padding-right: 55px;
+        p{
+          margin-left: 0;
+          margin-right: -55px;
+        }
+      }
+    }
+    .resume-item-subtitle{
+      margin-left: 0;
+      margin-right: -55px;
+    }
+  }
+}
+
+@media all and (max-width: 991px){
+  .resume-download-button{
+    .button{
+      .icon{
+        margin-left: 0;
+      }
+    }
+  }
+}

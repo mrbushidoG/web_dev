@@ -1,0 +1,64 @@
+/*
+* Buttons
+*/
+.button{
+  border: 2px solid @color-light-gray2;
+  background: @button-color;
+  border-color: @button-color;
+  .border-radius(@border-radius);
+  color: @color-white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 1.556em;
+  padding: 8px 23px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  .transition(all .15s ease);
+  &:disabled,
+  &:hover{
+    color: @color-white;
+    .opacity(0.8);
+    text-decoration: none;
+  }
+  &.hover-clear{
+    border: 2px solid @button-color;
+    &:disabled,
+    &:hover{
+      color: @button-color;
+      background: @color-white;
+      border-color: @button-color;
+      .opacity(1);
+    }
+  }
+  &.welcome-screen {
+    background: transparent;
+    border: 2px solid @color-white-50;
+    .border-radius(@border-radius);
+    color: @welcome-screen-button-font-color;
+    font-family: @welcome-screen-button-font-family;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 1.25px;
+    padding: 18px 30px 15px 30px;
+    transition: background 0.15s linear;
+    &:hover {
+      background: @color-white-10;
+    }
+    .icon {
+      font-size: 21px;
+      margin-left: 23px;
+    }
+  }
+  &.button-small{
+    font-size: 14px;
+  }
+  .icon{
+    color: inherit !important;
+    margin-left: 15px;
+  }
+  .sending{
+    display: none;
+  }
+}

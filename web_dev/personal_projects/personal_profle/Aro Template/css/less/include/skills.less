@@ -1,0 +1,51 @@
+/*
+* 4.9. Skills
+*/
+.skills{
+  margin-bottom: -25px;
+  .skill-wrapper{
+    margin-bottom: 40px;
+    width: 100%;
+    .skill-label{
+      color: @color-black;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .skill{
+      background: @color-light-gray2;
+      height: 10px;
+      width: 100%;
+      .border-radius(@border-radius);
+      overflow: hidden;
+      &.small{
+        height: 8px;
+      }
+      &.big{
+        height: 12px;
+      }
+      .skill-fill{
+        background: @color-black;
+        height: 100%;
+        width: 0;
+      }
+      .skill-fill-mixin(@size) when (@size >= 100){
+        @unit: %;
+        &.skill-@{size}{
+          .skill-fill{
+            width: unit(@size, @unit);
+          }
+        }
+      }
+      .skill-fill-mixin(@size) when (@size < 100){
+        @unit: %;
+        &.skill-@{size}{
+          .skill-fill{
+            width: unit(@size, @unit);
+          }
+        }
+        .skill-fill-mixin(@size + 1);
+      }
+      .skill-fill-mixin(0);
+    }
+  }
+}
