@@ -1,31 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Type Ahead 👀</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Type Ahead 👀</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+  <body>
+    <h1>Test</h1>
+    <form class="search-form">
+      <input type="text" class="search" placeholder="City or State" />
+      <ul class="suggestions">
+        <li>Filter for a city</li>
+        <li>or a state</li>
+      </ul>
+    </form>
+    <script>
+      const endpoint =
+        "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
+      const cities = [];
 
-  <form class="search-form">
-    <input type="text" class="search" placeholder="City or State">
-    <ul class="suggestions">
-      <li>Filter for a city</li>
-      <li>or a state</li>
-    </ul>
-  </form>
-<script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-const cities = [];
+      const prom = fetch(endpoint)
+        .then((blob) => blob.json())
+        .then((data) => cities.push(...data));
 
+      function findMacthes(wordToMatch, cities) {
+        return cities.filter((place) => {
+          const regex = new RegExp(wordToMatch, "gi");
+          return place.city.match(regex) || place.state.match(regex);
+        });
+      }
 
-const prom = fetch(endpoint).then(blob => blob.json())
-                            .then(data => cities.push(...date) );
+      function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
 
+      function displayMatches() {
+        const matchArray = findMacthes(this.value, cities);
+        const html = matchArray
+          .map((place) => {
+            const regex = new RegExp(this.value, "gi");
+            const cityName = place.city.replace(
+              regex,
+              `<span class="hl">
+            ${this.value}</span>`
+            );
+            const stateName = place.state.replace(
+              regex,
+              `<span class="hl">
+              ${this.value}</span>`
+            );
+            return `
+            <li>
+              <span class="name">${cityName}, ${stateName}</span>
+              <span class="population">${numberWithCommas(
+                place.population
+              )}</span>
+          </li>
+          `;
+          })
+          .join("");
+        suggestions.innerHTML = html;
+      }
 
+      // This section is for finding shortest distance between 2 destinations
 
+      // Javascript program for the haversine formula
 
-</script>
-</body>
+      function haversine(lat1, lon1, lat2, lon2) {
+        // convert to radian
+        let rad_lat1 = lat1 * (Math.PI / 180.0);
+        let rad_lon1 = lon1 * (Math.PI / 180.0);
+        let rad_lat2 = lat2 * (Math.PI / 180.0);
+        let rad_lon2 = lon2 * (Math.PI / 180.0);
+
+        // find the difference
+        let dLat = rad_lat2 - rad_lat1;
+        let dLon = rad_lon2 - rad_lon1;
+
+        // apply formulae
+        let a =
+          Math.pow(Math.sin(dLat / 2), 2) + (Math.cos(lat1) * Math.cos(lat2)*Math.pow(Math.sin(dLon / 2), 2));
+        let rad = 6371;
+        let c = 2 * Math.pow(Math.atan(Math.sqrt(a)),2);
+        return rad * c;
+      }
+      // Driver Code
+      let lat1 = 40.7128;
+      let lon1 = -74.006;
+      let lat2 = 34.0522;
+      let lon2 = -118.2437;
+      document.write(haversine(lat1, lon1, lat2, lon2) + " K.M.");
+
+      // This code is contributed by avanitrachhadiya2155
+
+      const searchInput = document.querySelector(".search");
+      const suggestions = document.querySelector(".suggestions");
+
+      searchInput.addEventListener("change", displayMatches);
+      searchInput.addEventListener("keyup", displayMatches);
+    </script>
+  </body>
 </html>

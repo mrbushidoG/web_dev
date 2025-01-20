@@ -36,6 +36,18 @@ td.delivery-status p {
     font-size: 14px;
 }
 
+td.remarks-options {
+    width: 100px;
+    height: 100px;
+    padding-top: 30px;
+}
+
+.remarks {
+    font-size: 14px;
+    margin-top: 25px;
+    
+}
+
 @media (max-width: 576px){
     body {
         background-color: aquamarine;
