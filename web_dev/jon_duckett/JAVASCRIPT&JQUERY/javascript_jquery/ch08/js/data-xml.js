@@ -5,7 +5,7 @@ xhr.onload = function () {
     var events = response.getElementsByTagName("event");
 
     for (let i = 0; i < events.length; i++) {
-      var container, image, location, city, newline;
+      var container, image, location, city, newline, max_num_passegers;
       container = document.createElement("div");
       container.className = "event";
       
@@ -23,8 +23,15 @@ xhr.onload = function () {
       newline = document.createElement('br');
       city.appendChild(document.createTextNode(getNodeValue(events[i], 'location')));
       location.appendChild(newline);
+      location.insertBefore(city,newline);
+      location.appendChild(document.createTextNode(getNodeValue(events[i],'date')));
+      container.appendChild(location);
 
-      console.log(events[i]);
+      // show the maximum 
+      max_num_passegers = document.createElement('p');
+      
+
+      
       
 
 
@@ -37,6 +44,8 @@ xhr.onload = function () {
         return obj.getElementsByTagName(tag)[0].firstChild.nodeValue;
     }
   }
+
+  console.log(events[0].getElementsByTagName('location'));
 };
 
 xhr.open("GET", "data/data.xml", true);

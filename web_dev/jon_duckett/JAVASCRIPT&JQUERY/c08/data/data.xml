@@ -4,15 +4,18 @@
     <location>San Francisco, CA</location>
     <date>May 1</date>
     <map>img/map-ca.png</map>
+    <passengers>Max Number of Passengers Allowed: 20</passengers>
   </event>
   <event>
     <location>Austin, TX</location>
     <date>May 15</date>
     <map>img/map-tx.png</map>
+    <passengers>Max Number of Passengers Allowed: 40</passengers>
   </event>
   <event>
     <location>New York, NY</location>
     <date>May 30</date>
     <map>img/map-ny.png</map>
+    <passengers>Max Number of Passengers Allowed: 30</passengers>
   </event>
 </events>
