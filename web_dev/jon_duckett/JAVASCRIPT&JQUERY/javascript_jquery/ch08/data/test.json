@@ -1,0 +1,19 @@
+{
+    "games": [
+        {
+            "name": "God of war",
+            "genre": "AAA",
+            "release_date": "01-02-2013"
+        },
+        {
+            "name": "Final Fantasy",
+            "genre": "AAA",
+            "release_date": "01-02-2010"
+        },
+        {
+            "name": "Ninja Gaiden",
+            "genre": "Hack and Slash",
+            "release_date": "01-02-2007"
+        }
+    ]
+}
