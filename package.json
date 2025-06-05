@@ -1,0 +1,17 @@
+{
+  "name": "coffee-mug-barcode",
+  "version": "1.0.0",
+  "description": "Coffee mugs website with barcode for each mug.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "react-scripts": "^5.0.1",
+    "jsbarcode": "^3.11.5"
+  }
+}

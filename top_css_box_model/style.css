@@ -1,0 +1,45 @@
+.static {
+    position: static;
+    border: 1px solid firebrick;
+}
+
+.relative1 {
+    position: relative;
+    border: 1px solid green;
+}
+
+.relative2 {
+    display: inline-block;
+    position: relative;
+    top: -4px;
+    left: -10px;
+    right: 25px;
+    width: 500px;
+    border: 5px solid pink;
+}
+
+.fixed {
+    position: fixed;
+    bottom: 0;
+    right: 450px;
+    width: 200px;
+    background-color: white;
+    border: 1px solid yellow;
+}
+
+.relative3 {
+    position: relative;
+    width: 600px;
+    height: 400px;
+}
+
+.absolute {
+    position: absolute;
+    top: 12px;
+    right: 0;
+    width: 300px;
+    height: 200px;
+    border: 2px solid rebeccapurple;
+}
+
+
