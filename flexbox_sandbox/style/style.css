@@ -104,7 +104,7 @@ nav > ul > #login {
     background-color: lightblue;
 } */
 
-.article-container {
+/* .article-container {
     display: flex;
     justify-content: flex-start;
     border: 2px solid aquamarine;
@@ -114,21 +114,86 @@ nav > ul > #login {
     display: flex;
     border: 1px solid firebrick;
     background-color: white;
-    width: 600px;
+    gap: 30px;
+    width: 700px;
 }
 
 .article {
-    flex: 1;
-}
+    width: 20px;
+    border: 2px solid deeppink;
+} */
 
-
-.image-container {
+/* form {
     display: flex;
-    justify-content: center;
-    margin-top: 30px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+} */
+
+/* .flex-wrapper{
+    display: flex;
 }
 
-.img-item {
-    flex: 1;
-    align-self: center;
+.item{
+    height: 50px;
+    border: 5px solid royalblue;
+    border-radius: 4px;
+    background-color: hotpink;
+    width: 2000px;
+    flex:10;
+}
+
+.item1{
+    height: 50px;
+    border: 5px solid royalblue;
+    border-radius: 4px;
+    background-color: hotpink;
+    width: 2000px;
+    flex:5;
+} */
+
+
+body {
+  background: hsl(210deg, 30%, 12%);
+  color: hsl(0deg 0% 100%);
+}
+.wrapper {
+  display: flex;
+  gap: 8px;
+}
+.item {
+  height: 32px;
+  border: 2px solid hsl(210deg 8% 50%);
+  background: hsl(210deg 15% 20%);
+}
+.item.stretch {
+  /*
+    Because this item is empty, it
+    has a default hypothetical width
+     of 0px. This isn't realistic,
+     though; in a typical case,
+     there would be content in here!
+     And so we set a width of 300px
+     to simulate it containing stuff.
+  */
+  width: 300px;
+  flex-grow: 1;
+  border-radius: 16px;
+}
+.item.ball {
+  width: 32px;
+  flex-shrink: 0;
+  /*
+    NOTE: We could prevent the circle
+    from squishing into an oval by
+    setting border-radius: 16px
+    instead. I'm using percentages
+    because it makes for a better
+    demo. But even with a pixel-based
+    radius, we still need
+    flex-shrink: 0 to prevent the
+    item from shrinking (give it a
+    shot and see the difference!).
+  */
+  border-radius: 50%;
 }
